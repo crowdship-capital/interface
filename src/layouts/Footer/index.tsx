@@ -94,7 +94,7 @@ const socialLinks = [
   },
 ];
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <Container maxW='1240px' mt={100} pb={20}>
       <SimpleGrid columns={[2, null, 4]} spacing='40px'>
@@ -156,3 +156,5 @@ export const Footer = () => {
     </Container>
   );
 };
+
+export default Footer;

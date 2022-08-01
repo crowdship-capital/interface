@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 
+export interface IModalDrawer {
+  isOpen?: boolean;
+  position?: 'top' | 'right' | 'bottom' | 'left';
+  onClose?: () => void;
+}
+
 export interface IModalDialog {
   isOpen?: boolean;
   children?: ReactNode;

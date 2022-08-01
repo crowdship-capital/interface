@@ -2,14 +2,13 @@ import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import App from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import Script from 'next/script';
 
 import { OnboardProvider } from '@/context/OnboardContext';
 import GlobalProvider from '@/context/GlobalContext';
 
-import { Layout } from '@/components/Layout';
+import Body from '@/layouts/Body';
 import theme from '@/theme/theme';
 
 import loadLocale from '@/utils/load-locale';
@@ -50,9 +49,9 @@ const MyApp = ({ Component, pageProps }): JSX.Element => {
         <ChakraProvider theme={theme}>
           <GlobalProvider>
             <OnboardProvider>
-              <Layout>
+              <Body>
                 <Component {...props} />
-              </Layout>
+              </Body>
             </OnboardProvider>
           </GlobalProvider>
         </ChakraProvider>
@@ -60,28 +59,5 @@ const MyApp = ({ Component, pageProps }): JSX.Element => {
     </>
   );
 };
-
-// MyApp.getInitialProps = async (appContext) => {
-//   const env = process.env.NODE_ENV;
-//   const pageProps = await App.getInitialProps(appContext);
-
-//   if (appContext.ctx && env === 'development') {
-//     const { query, req } = appContext.ctx;
-
-//     if (req && query) {
-//       if (
-//         !query.myCrowdship &&
-//         !req.url.includes('404') &&
-//         !req.url.includes('create-demo')
-//       ) {
-//         return nextRedirect({ ctx: appContext.ctx, to: '/404' });
-//       }
-//     }
-//   }
-
-//   return {
-//     ...pageProps,
-//   };
-// };
 
 export default MyApp;

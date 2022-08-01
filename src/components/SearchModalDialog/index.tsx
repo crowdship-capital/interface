@@ -24,7 +24,7 @@ import MultiRef from 'react-multi-ref';
 
 import { ModalDialog } from '@/components/ModalDialog';
 
-import { IModalDialog } from '@/types/common/modal-dialog';
+import { IModalDialog } from '@/types/common';
 
 export interface ISearchModalDialog extends IModalDialog {
   isOpen?: boolean;

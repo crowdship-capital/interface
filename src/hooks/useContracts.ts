@@ -1,7 +1,7 @@
 import { SupportedChainId } from '@/constants/chains';
-import { useContract } from '@/hooks/web3Onboard';
+import { useContract } from '@/hooks/useWeb3Onboard';
 
-import { useConnectedChain } from '@/hooks/web3Onboard';
+import { useConnectedChain } from '@/hooks/useWeb3Onboard';
 
 import FactoryABI from '@/abis/Factory.json';
 import CampaignFactoryABI from '@/abis/CampaignFactory.json';

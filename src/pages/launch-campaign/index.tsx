@@ -34,16 +34,15 @@ import { CampaignCard } from '@/components/CampaignCard';
 import { RadioGroup } from '@/components/RadioGroup';
 import { CategoryIcon } from '@/components/CategoryIcon';
 
-import { useGlobalState } from '@/hooks/globalState';
-import { ReducerTypes } from '@/reducer';
+import { useNotification } from '@/store/application/hooks';
 
 import { gun, user } from '@/lib/gun';
 import { uploadFile } from '@/lib/xhr/upload-file';
 
-import { useAuthenticate, useWallet } from '@/hooks/web3Onboard';
-import { useCampaignFactory } from '@/hooks/contracts';
-import useCampaignFactoryAddress from '@/hooks/campaignFactoryAddress';
-import { useInjectCrowdshipQuery } from '@/hooks/injectCrowdshipQuery';
+import { useAuthenticate, useWallet } from '@/hooks/useWeb3Onboard';
+import { useCampaignFactory } from '@/hooks/useContracts';
+import useCampaignFactoryAddress from '@/hooks/useCampaignFactoryAddress';
+import { useInjectCrowdshipQuery } from '@/hooks/useInjectCrowdshipQuery';
 
 import nanoid from '@/utils/nanoid';
 
@@ -133,13 +132,11 @@ const Launch: NextPage = () => {
   });
   const [transactionError, setTransactionError] = useState('');
 
-  const { dispatch } = useGlobalState();
-
   const campaignFactoryAddress = useCampaignFactoryAddress();
   const campaignFactory = useCampaignFactory(campaignFactoryAddress);
-
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const wallet = useWallet();
+  const [_, setNotification] = useNotification();
 
   const injectCrowdshipQuery = useInjectCrowdshipQuery();
 
@@ -450,13 +447,8 @@ const Launch: NextPage = () => {
   ];
 
   const setProfileDrawerLoading = (loading: boolean) => {
-    dispatch({
-      type: ReducerTypes.TOGGLE_NOTIFICATION_LOADING,
-      payload: {
-        notification: {
-          loading,
-        },
-      },
+    setNotification({
+      loading,
     });
   };
 
@@ -466,31 +458,21 @@ const Launch: NextPage = () => {
     await campaignFactory
       .signUp(user.is.alias)
       .then(() => {
-        dispatch({
-          type: ReducerTypes.TOGGLE_NOTIFICATION,
-          payload: {
-            notification: {
-              type: 'success',
-              isOpen: true,
-              title: 'Huzzah! Your profile was much success.',
-              showButton: false,
-            },
-          },
+        setNotification({
+          type: 'success',
+          isOpen: true,
+          title: 'Huzzah! Your profile was much success.',
+          showButton: false,
         });
       })
       .catch((err) => {
-        dispatch({
-          type: ReducerTypes.TOGGLE_NOTIFICATION,
-          payload: {
-            notification: {
-              type: 'error',
-              isOpen: true,
-              title: err.error.message,
-              icon: <XCircle color='#FFFFFF' size={25} />,
-              buttonText: 'Try again',
-              buttonAction: async () => createProfile(user),
-            },
-          },
+        setNotification({
+          type: 'error',
+          isOpen: true,
+          title: err.error.message,
+          icon: <XCircle color='#FFFFFF' size={25} />,
+          buttonText: 'Try again',
+          buttonAction: async () => createProfile(user),
         });
       })
       .finally(() => {
@@ -539,31 +521,21 @@ const Launch: NextPage = () => {
           });
 
           // ask user to create a profile
-          dispatch({
-            type: ReducerTypes.TOGGLE_NOTIFICATION,
-            payload: {
-              notification: {
-                isOpen: true,
-                type: 'info',
-                title: "Seems like you don't have a profile yet.",
-                buttonText: "Let's do it!",
-                showButton: true,
-                buttonAction: async () => createProfile(user),
-              },
-            },
+          setNotification({
+            isOpen: true,
+            type: 'info',
+            title: "Seems like you don't have a profile yet.",
+            buttonText: "Let's do it!",
+            showButton: true,
+            buttonAction: async () => createProfile(user),
           });
         }
       } catch (err) {
-        dispatch({
-          type: ReducerTypes.TOGGLE_NOTIFICATION,
-          payload: {
-            notification: {
-              type: 'error',
-              isOpen: true,
-              title: err.message,
-              showButton: false,
-            },
-          },
+        setNotification({
+          type: 'error',
+          isOpen: true,
+          title: err.message,
+          showButton: false,
         });
         setCampaignForm({
           ...campaignForm,

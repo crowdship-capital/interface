@@ -1,101 +1,37 @@
 import React, { createContext, useContext } from 'react';
-import { useImmerReducer } from 'use-immer';
 
-import reducer, { ReducerTypes } from '@/reducer';
-
-import {
-  SearchModalDialog,
-  ISearchModalDialog,
-  initialProps as searchModalDialogProps,
-} from '@/components/SearchModalDialog';
+import { SearchModalDialog } from '@/components/SearchModalDialog';
+import { NotificationBar } from '@/components/NotificationBar';
+import { Loading } from '@/components/Loading';
 
 import {
-  NotificationBar,
-  INotificationBar,
-  initialProps as notificationBarProps,
-} from '@/components/NotificationBar';
+  useNotification,
+  useLoading,
+  useSearchModal,
+} from '@/store/application/hooks';
 
-import {
-  Loading,
-  ILoading,
-  initialProps as loadingProps,
-} from '@/components/Loading';
-
-import {
-  initialProps as profileOverviewModalProps,
-  IProfileOverviewModal,
-} from '@/components/ProfileOverviewModal';
-
-export interface ContextReader {
-  searchModalDialog?: ISearchModalDialog;
-  notification?: INotificationBar;
-  loading?: ILoading;
-  profileOverviewModal?: IProfileOverviewModal;
-}
-
-export interface ContextWriter {
-  type: string;
-  payload: ContextReader;
-}
-
-export interface IGlobalContext {
-  state: ContextReader;
-  dispatch: React.Dispatch<ContextWriter>;
-}
-
-const initialCtxProps: IGlobalContext = {
-  state: {
-    searchModalDialog: searchModalDialogProps,
-    notification: notificationBarProps,
-    loading: loadingProps,
-    profileOverviewModal: profileOverviewModalProps,
-  },
-  dispatch: () => {},
-};
-
-const GlobalContext = createContext<IGlobalContext>(initialCtxProps);
+const GlobalContext = createContext({});
 
 export function useGlobalContext() {
   return useContext(GlobalContext);
 }
 
 const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useImmerReducer<ContextReader, ContextWriter>(
-    reducer,
-    initialCtxProps.state
-  );
-
-  const toggleSearchModal = (isOpen: boolean) => {
-    dispatch({
-      type: ReducerTypes.TOGGLE_SEARCH_MODAL,
-      payload: {
-        searchModalDialog: {
-          isOpen,
-        },
-      },
-    });
-  };
+  const [notification, setNotification] = useNotification();
+  const [loading] = useLoading();
+  const [searchModal, setSearchModal] = useSearchModal();
 
   return (
-    <GlobalContext.Provider value={{ state, dispatch }}>
-      <Loading {...state.loading} />
+    <GlobalContext.Provider value={{}}>
+      <Loading {...loading} />
       <NotificationBar
-        {...state.notification}
-        onClose={() =>
-          dispatch({
-            type: ReducerTypes.TOGGLE_NOTIFICATION,
-            payload: {
-              notification: {
-                isOpen: false,
-              },
-            },
-          })
-        }
+        {...notification}
+        onClose={() => setNotification({ isOpen: false })}
       />
       <SearchModalDialog
-        {...state.searchModalDialog}
-        onOpen={() => toggleSearchModal(true)}
-        onClose={() => toggleSearchModal(false)}
+        {...searchModal}
+        onOpen={() => setSearchModal({ isOpen: true })}
+        onClose={() => setSearchModal({ isOpen: false })}
       />
       {children}
     </GlobalContext.Provider>

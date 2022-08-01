@@ -52,11 +52,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useGlobalState } from '@/hooks/globalState';
-import { useAuthenticate, useLogout } from '@/hooks/web3Onboard';
-import { useContractAddress, useFactory } from '@/hooks/contracts';
-
-import { ReducerTypes } from '@/reducer';
+import { useAuthenticate, useLogout } from '@/hooks/useWeb3Onboard';
+import { useContractAddress, useFactory } from '@/hooks/useContracts';
+import { useLoading } from '@/store/application/hooks';
 
 type formData = {
   governance: string;
@@ -170,6 +168,8 @@ const Home: NextPage = (props) => {
   const campaignVoteAddress = contractAddress('campaignVoteImplementation');
   const factory = useFactory(factoryAddress);
 
+  const [{ isLoading }, setLoading] = useLoading();
+
   const campaignConfigValues = [
     {
       key: 'campaignContractAddress',
@@ -232,7 +232,6 @@ const Home: NextPage = (props) => {
   const timeFields = ['deadlineExtension', 'requestDuration'];
 
   const [transactionError, setTransactionError] = useState<string>('');
-  const { state, dispatch } = useGlobalState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     watch,
@@ -242,7 +241,7 @@ const Home: NextPage = (props) => {
     setValue,
     handleSubmit,
     setError,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<formData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -263,14 +262,9 @@ const Home: NextPage = (props) => {
   const watchAllFields = watch();
 
   const isSubmitting = (isLoading: boolean) => {
-    dispatch({
-      type: ReducerTypes.SET_LOADING,
-      payload: {
-        loading: {
-          isLoading,
-          loadingText: 'Processing...',
-        },
-      },
+    setLoading({
+      isLoading,
+      loadingText: 'Processing...',
     });
   };
 
@@ -671,15 +665,11 @@ const Home: NextPage = (props) => {
                 <Stack mt={4}>
                   <Button
                     onClick={!authenticated ? authenticate : undefined}
-                    disabled={state.loading.isLoading || authenticating}
+                    disabled={isLoading || authenticating}
                     type={authenticated ? 'submit' : null}
                     variant={authenticated ? 'primary' : 'primaryAlt'}
                     isLoading={authenticating}
-                    loadingText={
-                      !state.loading.isLoading
-                        ? 'Connecting...'
-                        : 'Deploying...'
-                    }
+                    loadingText={!isLoading ? 'Connecting...' : 'Deploying...'}
                     size='lg'
                     leftIcon={
                       authenticated ? (

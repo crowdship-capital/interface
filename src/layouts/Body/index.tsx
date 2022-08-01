@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import Header from '@/layouts/Header';
+import Footer from '@/layouts/Footer';
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+const Body = ({ children }: { children: ReactNode }) => {
   const { pathname } = useRouter();
 
   const showComponent = (paths: string[]) => !paths.includes(pathname);
@@ -23,3 +23,5 @@ export const Layout = ({ children }: { children: ReactNode }) => {
     </main>
   );
 };
+
+export default Body;

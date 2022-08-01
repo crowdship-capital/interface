@@ -52,15 +52,18 @@
       "@/context/*": [
         "src/context/*"
       ],
-      "@/reducer": [
-        "src/reducer/index.ts"
+      "@/store/*": [
+        "src/store/*"
       ],
       "@/types/*": [
         "src/types/*"
       ],
       "@/public/*": [
         "public/*"
-      ]
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
     },
     "incremental": true
   },

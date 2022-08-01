@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { Info } from 'phosphor-react';
 
-import { IModalDrawer } from '@/types/common/modal-drawer';
+import { IModalDrawer } from '@/types/common';
 
 export interface INotificationBar extends IModalDrawer {
   title?: string;

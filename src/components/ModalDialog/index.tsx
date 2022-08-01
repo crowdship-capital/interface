@@ -7,7 +7,7 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 
-import { IModalDialog } from '@/types/common/modal-dialog';
+import { IModalDialog } from '@/types/common';
 
 export const ModalDialog: FC<IModalDialog> = ({
   children,

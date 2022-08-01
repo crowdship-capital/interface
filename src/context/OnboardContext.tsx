@@ -6,10 +6,7 @@ import { WalletState } from '@web3-onboard/core';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 
-import { useGlobalState } from '@/hooks/globalState';
-
-import { ReducerTypes } from '@/reducer';
-
+import { useNotification } from '@/store/application/hooks';
 import { user } from '@/lib/gun';
 import { SupportedChainId } from '@/constants/chains';
 
@@ -49,29 +46,15 @@ export const OnboardProvider = ({ children }) => {
   });
   const [{ wallet }, connect, disconnect] = useConnectWallet();
   const [{ connectedChain }] = useSetChain();
-  const { dispatch } = useGlobalState();
+  const [_, setNotification] = useNotification();
 
   const authenticate = async (): Promise<void> => {
-    if (state.connectedChainError) {
-      // open wrong network modal
-      dispatch({
-        type: ReducerTypes.TOGGLE_NOTIFICATION,
-        payload: {
-          notification: {
-            isOpen: true,
-            type: 'error',
-            title: state.connectedChainError.message,
-          },
-        },
-      });
-    } else {
-      await connect({
-        autoSelect: {
-          disableModals: false,
-          label: 'Connect Wallet',
-        },
-      });
-    }
+    await connect({
+      autoSelect: {
+        disableModals: false,
+        label: 'Connect Wallet',
+      },
+    });
   };
 
   const _signGunLogin = async (signer: JsonRpcSigner): Promise<string> => {
@@ -102,27 +85,29 @@ export const OnboardProvider = ({ children }) => {
       const provider = new Web3Provider(wallet.provider);
       const signature = await _signGunLogin(provider.getSigner());
 
-      const ack = await new Promise<{
-        ack: 2;
-        get: string;
-        on: (...args: [unknown, unknown, unknown]) => unknown;
-        put: {
-          alias: string;
-          auth: any;
-          epub: string;
-          pub: string;
-        };
-        sea: unknown;
-        soul: string;
-      }>((resolve) => {
-        user.create(address, signature, () => {
-          user.auth(address, signature, (ack) => resolve(ack as any));
+      if (!user.is) {
+        const ack = await new Promise<{
+          ack: 2;
+          get: string;
+          on: (...args: [unknown, unknown, unknown]) => unknown;
+          put: {
+            alias: string;
+            auth: any;
+            epub: string;
+            pub: string;
+          };
+          sea: unknown;
+          soul: string;
+        }>((resolve) => {
+          user.create(address, signature, () => {
+            user.auth(address, signature, (ack) => resolve(ack as any));
+          });
         });
-      });
 
-      const error = ack as unknown as { err?: string };
+        const error = ack as unknown as { err?: string };
 
-      if (error.err) throw new Error(error.err);
+        if (error.err) throw new Error(error.err);
+      }
 
       // console.log(login);
       // console.log(ack.sea);
@@ -139,15 +124,10 @@ export const OnboardProvider = ({ children }) => {
       }
     } catch (error) {
       _disconnectWallet();
-      dispatch({
-        type: ReducerTypes.TOGGLE_NOTIFICATION,
-        payload: {
-          notification: {
-            isOpen: true,
-            title: error.message,
-            type: 'error',
-          },
-        },
+      setNotification({
+        isOpen: true,
+        title: error.message,
+        type: 'error',
       });
       setState({
         ...state,
@@ -192,18 +172,14 @@ export const OnboardProvider = ({ children }) => {
   }, [wallet]);
 
   useEffect(() => {
-    if (
-      connectedChain &&
-      connectedChain.id &&
-      !Object.values(SupportedChainId).includes(
-        connectedChain.id as SupportedChainId
+    setState({
+      ...state,
+      connectedChainError: !Object.values(SupportedChainId).includes(
+        connectedChain?.id as SupportedChainId
       )
-    ) {
-      setState({
-        ...state,
-        connectedChainError: new Error('Wrong Network'),
-      });
-    }
+        ? new Error('Wrong Network')
+        : null,
+    });
   }, [connectedChain]);
 
   return (

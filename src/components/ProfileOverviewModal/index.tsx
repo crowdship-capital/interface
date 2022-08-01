@@ -8,20 +8,18 @@ import { ModalDialog } from '@/components/ModalDialog';
 
 import { generateSlicedAddress } from '@/utils/address';
 
-import { IModalDialog } from '@/types/common/modal-dialog';
+import { IModalDialog } from '@/types/common';
 
 export interface IProfileOverviewModal extends IModalDialog {
   isOpen?: boolean;
   profileImage?: string | ReactNode;
   wallet?: WalletState;
-  onOpen?: () => void;
   onClose?: () => void;
 }
 
 export const initialProps: IProfileOverviewModal = {
   profileImage: '',
   wallet: {} as WalletState,
-  onOpen: () => {},
   onClose: () => {},
   isOpen: false,
 };
@@ -30,7 +28,6 @@ const ProfileOverviewModal: FC<IProfileOverviewModal> = ({
   isOpen,
   profileImage,
   wallet,
-  onOpen,
   onClose,
 }): ReactElement => {
   return (

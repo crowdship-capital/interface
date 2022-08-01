@@ -53,8 +53,8 @@ import PaxIcon from '@/public/images/pax.svg';
 import UsdcIcon from '@/public/images/usdc.svg';
 import DaiIcon from '@/public/images/dai.svg';
 
-import useCampaignFactoryAddress from '@/hooks/campaignFactoryAddress';
-import { useCampaignFactory } from '@/hooks/contracts';
+import useCampaignFactoryAddress from '@/hooks/useCampaignFactoryAddress';
+import { useCampaignFactory } from '@/hooks/useContracts';
 
 const tabs = [
   {

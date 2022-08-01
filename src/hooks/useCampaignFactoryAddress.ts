@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContractAddress } from '@/hooks/contracts';
+import { useContractAddress } from '@/hooks/useContracts';
 
 const useCampaignFactoryAddress = (): string => {
   const { query } = useRouter();

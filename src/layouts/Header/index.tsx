@@ -29,12 +29,13 @@ import AdvancedMenu from '@/components/AdvancedMenu';
 import ProfileOverviewModal from '@/components/ProfileOverviewModal';
 import languageSwitcher from '@/utils/language-switcher';
 
-import { useLogout, useAuthenticate, useWallet } from '@/hooks/web3Onboard';
+import { useLogout, useAuthenticate, useWallet } from '@/hooks/useWeb3Onboard';
 import { generateSlicedAddress } from '@/utils/address';
-import { useGlobalState } from '@/hooks/globalState';
-import { useInjectCrowdshipQuery } from '@/hooks/injectCrowdshipQuery';
-
-import { ReducerTypes } from '@/reducer';
+import { useInjectCrowdshipQuery } from '@/hooks/useInjectCrowdshipQuery';
+import {
+  useProfileOverviewModal,
+  useSearchModal,
+} from '@/store/application/hooks';
 
 const NavLink = ({
   children,
@@ -62,12 +63,13 @@ const NavLink = ({
   </Link>
 );
 
-export const Header = () => {
+const Header = () => {
   const wallet = useWallet();
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const logout = useLogout();
-  const { dispatch, state } = useGlobalState();
   const injectCrowdshipQuery = useInjectCrowdshipQuery();
+  const [{ isOpen }, setProfileOverviewModal] = useProfileOverviewModal();
+  const [searchModal, setSearchModal] = useSearchModal();
 
   const Links = [
     {
@@ -91,10 +93,7 @@ export const Header = () => {
           text: 'Overview',
           icon: <UserFocus size={20} />,
           onClick: () => {
-            dispatch({
-              type: ReducerTypes.TOGGLE_PROFILE_OVERVIEW_MODAL,
-              payload: { profileOverviewModal: { isOpen: true } },
-            });
+            setProfileOverviewModal({ isOpen: true });
           },
           children: [],
           render: null,
@@ -237,12 +236,9 @@ export const Header = () => {
           />
         }
         onClose={() => {
-          dispatch({
-            type: ReducerTypes.TOGGLE_PROFILE_OVERVIEW_MODAL,
-            payload: { profileOverviewModal: { isOpen: false } },
-          });
+          setProfileOverviewModal({ isOpen: false });
         }}
-        isOpen={state.profileOverviewModal.isOpen}
+        isOpen={isOpen}
         wallet={wallet}
       />
       <Box bg='transparent' px={6} py={4} position='absolute' w='full'>
@@ -282,12 +278,7 @@ export const Header = () => {
               }}
               size='lg'
               fontSize='md'
-              onClick={() =>
-                dispatch({
-                  type: ReducerTypes.TOGGLE_SEARCH_MODAL,
-                  payload: { searchModalDialog: { isOpen: true } },
-                })
-              }
+              onClick={() => setSearchModal({ isOpen: true })}
             >
               <Box
                 w='full'
@@ -368,3 +359,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;
