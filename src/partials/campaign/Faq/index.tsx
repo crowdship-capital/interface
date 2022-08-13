@@ -1,4 +1,4 @@
-import { ReactNode, FC } from 'react';
+import React, { ReactNode, FC } from 'react';
 import {
   Box,
   Heading,
@@ -25,13 +25,13 @@ export const Faq: FC<IFaq> = ({ faqs }) => {
         <AccordionItem
           key={index}
           borderWidth='1px'
-          borderColor='blackAlpha.300'
+          borderColor='blackAlpha.100'
           mb='5'
           borderRadius='md'
         >
           <h2>
             <AccordionButton p='5'>
-              <Box flex='1' textAlign='left' color='blackAlpha.600'>
+              <Box flex='1' textAlign='left' color='black'>
                 {question}
               </Box>
               <AccordionIcon />
@@ -51,7 +51,7 @@ export const Faq: FC<IFaq> = ({ faqs }) => {
       mb='4'
     >
       <Box w='full'>
-        <Heading fontSize='3xl' fontWeight='500' mb='5'>
+        <Heading fontSize='xl' fontWeight='500' mb='5'>
           Frequently Asked Questions
         </Heading>
         <Accordion allowMultiple>{renderFAQs()}</Accordion>
@@ -59,7 +59,7 @@ export const Faq: FC<IFaq> = ({ faqs }) => {
       <Box paddingLeft='20'>
         <Box
           borderWidth='1px'
-          borderColor='blackAlpha.300'
+          borderColor='blackAlpha.100'
           p='5'
           borderRadius='md'
         >

@@ -69,6 +69,24 @@ export const ButtonStyles = {
     clear: () => ({
       bg: 'transparent',
       color: 'black.500',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'blackAlpha.100',
+      borderRadius: 'md',
+      _hover: {
+        bg: 'none',
+        _disabled: {
+          bg: 'transparent',
+          color: 'blackAlpha.100',
+        },
+      },
+      _focus: {
+        boxShadow: 'none',
+      },
+    }),
+    ghost: () => ({
+      bg: 'transparent',
+      color: 'black.500',
       borderRadius: 'md',
       _hover: {
         bg: 'transparent',

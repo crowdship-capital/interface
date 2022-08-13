@@ -27,6 +27,7 @@ import Avatar from 'boring-avatars';
 
 import AdvancedMenu from '@/components/AdvancedMenu';
 import ProfileOverviewModal from '@/components/ProfileOverviewModal';
+import { SearchInput } from '@/components/SearchInput';
 import languageSwitcher from '@/utils/language-switcher';
 
 import { useLogout, useAuthenticate, useWallet } from '@/hooks/useWeb3Onboard';
@@ -268,41 +269,10 @@ const Header = () => {
             </HStack>
           </HStack>
           <Flex alignItems='center'>
-            <Button
-              w='180px'
-              borderRadius='3xl'
-              variant='primary'
-              background='rgba(0, 0, 0, 0.06)'
-              _hover={{
-                backgroundColor: 'rgba(0, 0, 0, 0.06)',
-              }}
-              size='lg'
-              fontSize='md'
+            <SearchInput
+              width='180px'
               onClick={() => setSearchModal({ isOpen: true })}
-            >
-              <Box
-                w='full'
-                display='flex'
-                alignItems='center'
-                justifyContent='space-between'
-              >
-                <Text color='blackAlpha.400' fontWeight='400'>
-                  Search
-                </Text>
-                <Kbd
-                  display='flex'
-                  alignItems='center'
-                  color='blackAlpha.700'
-                  backgroundColor='yellow.200'
-                  borderColor='#E3DAAD'
-                >
-                  <Text as='span' fontSize='18px' mr='2px'>
-                    ⌘
-                  </Text>
-                  K
-                </Kbd>
-              </Box>
-            </Button>
+            />
             {!authenticated ? (
               <Button
                 ml={5}

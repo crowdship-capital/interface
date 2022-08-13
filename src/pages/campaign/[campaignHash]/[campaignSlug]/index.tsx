@@ -28,7 +28,7 @@ import {
   Governance,
   Discussions,
   Faq,
-} from '@/components/CampaignTabs';
+} from '@/partials/campaign';
 import AdvancedMenu from '@/components/AdvancedMenu';
 
 import { gun } from '@/lib/gun';
@@ -318,7 +318,7 @@ const Campaign: NextPage = (props) => {
                   size: 'lg',
                   'aria-label': 'More',
                   borderWidth: '1px',
-                  borderColor: 'blackAlpha.300',
+                  borderColor: 'blackAlpha.100',
                   bg: 'transparent',
                   ml: '3',
                   _hover: {
@@ -331,15 +331,9 @@ const Campaign: NextPage = (props) => {
             <Box mt='7' mb='7' alignItems='center'>
               <Button
                 leftIcon={<BookmarkSimple size={20} color='#72167B' />}
-                borderWidth='1px'
-                borderColor='blackAlpha.300'
-                bg='transparent'
-                color='black'
+                variant='clear'
                 size='sm'
                 fontWeight='500'
-                _hover={{
-                  bg: 'none',
-                }}
               >
                 <Trans>Save</Trans>
               </Button>
@@ -370,7 +364,7 @@ const Campaign: NextPage = (props) => {
               <p>two!</p>
             </TabPanel>
             <TabPanel>
-              <p>three!</p>
+              <Governance />
             </TabPanel>
             <TabPanel>
               <p>four!</p>

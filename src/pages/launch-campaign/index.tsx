@@ -610,7 +610,7 @@ const Launch: NextPage = () => {
         Router.push(campaignUrl);
       });
     } catch (error) {
-      setTransactionError(error);
+      setTransactionError(error.message);
       setCampaignForm({
         ...campaignForm,
         isLoading: false,

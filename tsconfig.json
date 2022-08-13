@@ -25,6 +25,9 @@
       "@/components/*": [
         "src/components/*"
       ],
+      "@/partials/*": [
+        "src/partials/*"
+      ],
       "@/connectors/*": [
         "src/connectors/*"
       ],
