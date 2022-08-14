@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import {
   Box,
   Heading,
@@ -14,15 +15,17 @@ import {
   MenuItemOption,
   MenuDivider,
   Center,
-  Select,
 } from '@chakra-ui/react';
-
 import {
   Activity,
   CurrencyDollar,
   Handshake,
   MagnifyingGlass,
 } from 'phosphor-react';
+
+import CampaignLayout from '@/layouts/Campaign';
+
+import useMakeUrl from '@/hooks/useMakeUrl';
 
 import { Statistic } from '@/components/Statistic';
 import { Pagination } from '@/components/Pagination';
@@ -56,7 +59,7 @@ const requests = [
   {
     id: '4',
     title: 'Improve quality of kayake gear',
-    approval: '',
+    approval: 'indecisive',
     endDate: '2020-01-01',
     approvalCount: 5403,
     requestAmount: '$10,000',
@@ -79,7 +82,10 @@ const requests = [
   },
 ];
 
-export const Governance = () => {
+const Governance = () => {
+  const { asPath } = useRouter();
+  const makeUrl = useMakeUrl();
+
   return (
     <Box
       display='flex'
@@ -164,7 +170,16 @@ export const Governance = () => {
           <Box>
             <Box mb='10'>
               {requests.map((request) => (
-                <RequestCard key={request.id} {...request} />
+                <RequestCard
+                  key={request.id}
+                  id={request.id}
+                  title={request.title}
+                  approval={request.approval}
+                  endDate={request.endDate}
+                  approvalCount={request.approvalCount}
+                  requestAmount={request.requestAmount}
+                  href={makeUrl(asPath, `request/${request.id}`)}
+                />
               ))}
             </Box>
             <Pagination />
@@ -188,3 +203,7 @@ export const Governance = () => {
     </Box>
   );
 };
+
+Governance.PageLayout = CampaignLayout;
+
+export default Governance;

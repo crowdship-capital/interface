@@ -5,14 +5,15 @@ import { useRouter } from 'next/router';
 import { ChakraProvider } from '@chakra-ui/react';
 import Script from 'next/script';
 
+import type { AppProps } from 'next/app';
+
 import { OnboardProvider } from '@/context/OnboardContext';
 import GlobalProvider from '@/context/GlobalContext';
 
-import Body from '@/layouts/Body';
+import Body from '@/layouts/Main';
 import theme from '@/theme/theme';
 
 import loadLocale from '@/utils/load-locale';
-import { nextRedirect } from '@/utils/next-redirect';
 
 import '@/styles/global.css';
 import '@fontsource/dm-sans/400.css';
@@ -23,9 +24,17 @@ import '@fontsource/dm-mono/500.css';
 import '@/connectors/onboard';
 import '@/connectors/locale-init';
 
-const MyApp = ({ Component, pageProps }): JSX.Element => {
+type ComponentWithPageLayout = AppProps & {
+  Component: AppProps['Component'] & {
+    PageLayout?: React.ComponentType;
+  };
+};
+
+const MyApp = ({
+  Component,
+  pageProps,
+}: ComponentWithPageLayout): JSX.Element => {
   const { locale } = useRouter();
-  const { ...props } = pageProps;
 
   useEffect(() => {
     loadLocale(locale);
@@ -49,9 +58,13 @@ const MyApp = ({ Component, pageProps }): JSX.Element => {
         <ChakraProvider theme={theme}>
           <GlobalProvider>
             <OnboardProvider>
-              <Body>
-                <Component {...props} />
-              </Body>
+              {Component.PageLayout ? (
+                <Component.PageLayout>
+                  <Component {...pageProps} />
+                </Component.PageLayout>
+              ) : (
+                <Component {...pageProps} />
+              )}
             </OnboardProvider>
           </GlobalProvider>
         </ChakraProvider>

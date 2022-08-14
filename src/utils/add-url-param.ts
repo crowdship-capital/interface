@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router';
-
-export const addQueryParamsToUrl = (url: string, params: unknown): string => {
+const addUrlParam = (url: string, params: unknown): string => {
   const tmpBase = !url.startsWith('http') ? 'http://tmp-base.com' : undefined;
   const modifiedUrl = new URL(url || '', tmpBase);
 
@@ -15,16 +13,4 @@ export const addQueryParamsToUrl = (url: string, params: unknown): string => {
   return modifiedUrl.toString().replace(tmpBase, '');
 };
 
-export const useInjectCrowdshipQuery = (): ((path: string) => string) => {
-  const { query } = useRouter();
-
-  return (path: string) => {
-    const { myCrowdship } = query;
-
-    if (myCrowdship) {
-      return addQueryParamsToUrl(path, { myCrowdship });
-    }
-
-    return path;
-  };
-};
+export default addUrlParam;

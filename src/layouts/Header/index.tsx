@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import {
   Box,
   Flex,
@@ -25,14 +26,14 @@ import {
 } from 'phosphor-react';
 import Avatar from 'boring-avatars';
 
-import AdvancedMenu from '@/components/AdvancedMenu';
+import { AdvancedMenu } from '@/components/AdvancedMenu';
 import ProfileOverviewModal from '@/components/ProfileOverviewModal';
 import { SearchInput } from '@/components/SearchInput';
 import languageSwitcher from '@/utils/language-switcher';
 
 import { useLogout, useAuthenticate, useWallet } from '@/hooks/useWeb3Onboard';
 import { generateSlicedAddress } from '@/utils/address';
-import { useInjectCrowdshipQuery } from '@/hooks/useInjectCrowdshipQuery';
+import useMakeUrl from '@/hooks/useMakeUrl';
 import {
   useProfileOverviewModal,
   useSearchModal,
@@ -66,20 +67,21 @@ const NavLink = ({
 
 const Header = () => {
   const wallet = useWallet();
+  const { asPath } = useRouter();
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const logout = useLogout();
-  const injectCrowdshipQuery = useInjectCrowdshipQuery();
+  const makeUrl = useMakeUrl();
   const [{ isOpen }, setProfileOverviewModal] = useProfileOverviewModal();
-  const [searchModal, setSearchModal] = useSearchModal();
+  const [_, setSearchModal] = useSearchModal();
 
   const Links = [
     {
       text: 'Discover',
-      url: injectCrowdshipQuery('/campaigns'),
+      url: makeUrl('/', 'campaigns'),
     },
     {
       text: 'Launch a campaign',
-      url: injectCrowdshipQuery('/launch-campaign'),
+      url: makeUrl('/', 'launch-campaign'),
     },
   ];
 
@@ -245,7 +247,7 @@ const Header = () => {
       <Box bg='transparent' px={6} py={4} position='absolute' w='full'>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
-            <Link href={injectCrowdshipQuery('/')} passHref>
+            <Link href={''} passHref>
               <Box as='a'>
                 <Image
                   onClick={logout}

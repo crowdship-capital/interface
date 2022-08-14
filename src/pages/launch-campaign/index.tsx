@@ -42,7 +42,7 @@ import { uploadFile } from '@/lib/xhr/upload-file';
 import { useAuthenticate, useWallet } from '@/hooks/useWeb3Onboard';
 import { useCampaignFactory } from '@/hooks/useContracts';
 import useCampaignFactoryAddress from '@/hooks/useCampaignFactoryAddress';
-import { useInjectCrowdshipQuery } from '@/hooks/useInjectCrowdshipQuery';
+import useMakeUrl from '@/hooks/useMakeUrl';
 
 import nanoid from '@/utils/nanoid';
 
@@ -138,7 +138,7 @@ const Launch: NextPage = () => {
   const wallet = useWallet();
   const [_, setNotification] = useNotification();
 
-  const injectCrowdshipQuery = useInjectCrowdshipQuery();
+  const makeUrl = useMakeUrl();
 
   const {
     register,
@@ -604,9 +604,7 @@ const Launch: NextPage = () => {
       );
 
       campaignFactory.on('CampaignDeployed', (_campaignFactory) => {
-        const campaignUrl = injectCrowdshipQuery(
-          `/campaign/${_id}/${campaignSlug}`
-        );
+        const campaignUrl = makeUrl('/', `campaign/${_id}/${campaignSlug}`);
         Router.push(campaignUrl);
       });
     } catch (error) {

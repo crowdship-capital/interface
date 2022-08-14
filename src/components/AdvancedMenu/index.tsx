@@ -62,7 +62,7 @@ const slideHorizontalAnimation = {
   },
 };
 
-const AdvancedMenu: FC<IAdvancedMenu> = ({
+export const AdvancedMenu: FC<IAdvancedMenu> = ({
   items,
   menuButtonStyle,
   menuButtonTrigger,
@@ -236,5 +236,3 @@ AdvancedMenu.defaultProps = {
   },
   placement: 'bottom-end',
 };
-
-export default AdvancedMenu;
