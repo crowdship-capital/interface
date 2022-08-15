@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { NextPage } from 'next';
 import {
   Box,
   Heading,
@@ -42,7 +41,7 @@ const faqs = [
   },
 ];
 
-const Faq: NextPage = () => {
+const Faq = () => {
   const renderFAQs = (): ReactNode[] => {
     return faqs.map(({ question, answer }, index) => {
       return (
