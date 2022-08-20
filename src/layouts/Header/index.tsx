@@ -67,7 +67,6 @@ const NavLink = ({
 
 const Header = () => {
   const wallet = useWallet();
-  const { asPath } = useRouter();
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const logout = useLogout();
   const makeUrl = useMakeUrl();
@@ -247,10 +246,9 @@ const Header = () => {
       <Box bg='transparent' px={6} py={4} position='absolute' w='full'>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
-            <Link href={''} passHref>
+            <Link href={makeUrl('/')} passHref>
               <Box as='a'>
                 <Image
-                  onClick={logout}
                   src={'/images/logo-light.svg'}
                   alt='crowdship logo'
                   width='150'

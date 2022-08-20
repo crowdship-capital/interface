@@ -15,12 +15,15 @@ import {
   MenuItemOption,
   MenuDivider,
   Center,
+  HStack,
+  VStack,
 } from '@chakra-ui/react';
 import {
   Activity,
   CurrencyDollar,
   Handshake,
   MagnifyingGlass,
+  Funnel,
 } from 'phosphor-react';
 
 import CampaignLayout from '@/layouts/Campaign';
@@ -30,6 +33,7 @@ import useMakeUrl from '@/hooks/useMakeUrl';
 import { Statistic } from '@/components/Statistic';
 import { Pagination } from '@/components/Pagination';
 import { RequestCard } from '@/components/RequestCard';
+import Card from '@/components/Card';
 
 const requests = [
   {
@@ -87,36 +91,29 @@ const Governance = () => {
   const makeUrl = useMakeUrl();
 
   return (
-    <Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='space-between'
-      mb='4'
-    >
+    <HStack alignItems='normal' spacing='50px'>
       <Box w='full'>
         <Box mb='10'>
           <Heading fontSize='xl' fontWeight='500' mb='5'>
             Overview
           </Heading>
-          <Box display='flex' alignItems='center'>
+          <HStack spacing='15px'>
             <Statistic
               title='Requests Created'
               value='2,540'
               prefix={<Activity size={25} />}
-              mr='5'
             />
             <Statistic
               title='Successful Requests'
               value='750'
               prefix={<Handshake size={25} />}
-              mr='5'
             />
             <Statistic
               title='Total Amount'
               value='350,000'
               prefix={<CurrencyDollar size={25} />}
             />
-          </Box>
+          </HStack>
         </Box>
         <Box>
           <Box
@@ -143,7 +140,12 @@ const Governance = () => {
               </InputGroup>
               <Menu closeOnSelect={false} placement='bottom-end'>
                 <MenuButton as={Button} variant='clear' fontWeight='500'>
-                  <Center>Filter</Center>
+                  <Center>
+                    <Funnel size={45} />
+                    <Text as='span' ml='1'>
+                      Filter
+                    </Text>
+                  </Center>
                 </MenuButton>
                 <MenuList minWidth='240px' shadow='xl' border='none'>
                   <MenuOptionGroup
@@ -168,7 +170,7 @@ const Governance = () => {
             </Box>
           </Box>
           <Box>
-            <Box mb='10'>
+            <VStack spacing='20px' w='full' mb='10'>
               {requests.map((request) => (
                 <RequestCard
                   key={request.id}
@@ -181,26 +183,21 @@ const Governance = () => {
                   href={makeUrl(asPath, `request/${request.id}`)}
                 />
               ))}
-            </Box>
+            </VStack>
             <Pagination />
           </Box>
         </Box>
       </Box>
-      <Box paddingLeft='20'>
-        <Box
-          borderWidth='1px'
-          borderColor='blackAlpha.100'
-          p='5'
-          borderRadius='md'
-        >
+      <Box>
+        <Card>
           <Text mb='5'>
             CDS tokens represent voting shares in Crowdship governance. You can
             vote <br /> on each request yourself.
           </Text>
           <Button variant='primaryAlt'>Create Request</Button>
-        </Box>
+        </Card>
       </Box>
-    </Box>
+    </HStack>
   );
 };
 

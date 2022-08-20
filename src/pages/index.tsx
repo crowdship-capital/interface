@@ -25,12 +25,11 @@ import {
   AirplaneTilt,
 } from 'phosphor-react';
 import { SearchIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import styled from 'styled-components';
 
 import { Hero } from '@/components/Hero';
 import { CampaignCard } from '@/components/CampaignCard';
 
-const StyledMyCrowdship = styled.div``;
+import MainLayout from '@/layouts/Main';
 
 type FeatureCardProps = {
   heading?: ReactNode;
@@ -166,9 +165,9 @@ const categoriesData = [
   },
 ];
 
-const MyCrowdship: NextPage = () => {
+const Home = () => {
   return (
-    <StyledMyCrowdship>
+    <>
       <Head>
         <title>Crowdship</title>
         <meta name='description' content='' />
@@ -316,8 +315,10 @@ const MyCrowdship: NextPage = () => {
           </SimpleGrid>
         </Box>
       </Container>
-    </StyledMyCrowdship>
+    </>
   );
 };
 
-export default MyCrowdship;
+Home.PageLayout = MainLayout;
+
+export default Home;

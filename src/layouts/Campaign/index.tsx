@@ -27,9 +27,11 @@ import {
   PencilSimpleLine,
   Sword,
   Receipt,
+  ShareNetwork,
   FacebookLogo,
   TwitterLogo,
   LinkSimple,
+  UsersThree,
 } from 'phosphor-react';
 
 import { gun } from '@/lib/gun';
@@ -89,6 +91,11 @@ const CampaignLayout = ({ children }) => {
       label: 'Discussions',
       badge: '304',
       href: 'discussions',
+    },
+    {
+      label: 'Transactions',
+      badge: null,
+      href: 'transactions',
     },
     {
       label: 'FAQ',
@@ -254,6 +261,10 @@ const CampaignLayout = ({ children }) => {
                     {
                       text: <Trans>Create Reward</Trans>,
                       icon: <Gift size={20} />,
+                    },
+                    {
+                      text: <Trans>Collaborators</Trans>,
+                      icon: <UsersThree size={20} />,
                       hasDivider: true,
                     },
                     {
@@ -307,15 +318,20 @@ const CampaignLayout = ({ children }) => {
         />
 
         <Tabs index={tabIndex} onChange={handleTabsChange}>
-          <TabList padding='0 115px'>{renderTabs()}</TabList>
-
+          <TabList
+            padding='0 115px'
+            position='sticky'
+            top='0'
+            bg='white'
+            zIndex='2'
+          >
+            {renderTabs()}
+          </TabList>
           <Container maxW='1240px' paddingTop='10'>
             <TabPanels>
-              <TabPanel>{children}</TabPanel>
-              <TabPanel>{children}</TabPanel>
-              <TabPanel>{children}</TabPanel>
-              <TabPanel>{children}</TabPanel>
-              <TabPanel>{children}</TabPanel>
+              {tabs.map((_, idx) => (
+                <TabPanel key={idx}>{children}</TabPanel>
+              ))}
             </TabPanels>
           </Container>
         </Tabs>

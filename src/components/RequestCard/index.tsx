@@ -1,19 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 
 import { Box, Text, Badge, Progress } from '@chakra-ui/react';
-
 import { ArrowRight } from 'phosphor-react';
 
+import Card from '@/components/Card';
+
 export interface IRequestCard {
-  id: string;
-  title: string;
-  approval: string;
-  endDate: string;
-  approvalCount: number;
-  requestAmount: string;
-  href: string;
+  id?: string;
+  title?: string;
+  approval?: string;
+  endDate?: string;
+  approvalCount?: number;
+  requestAmount?: string;
+  href?: string;
+}
+
+export interface IRequestHeader extends IRequestCard {
+  tags?: [{ text: string; color: string }];
+  hideProgress?: boolean;
+  hideNavigation?: boolean;
+  [key: string]: any;
 }
 
 const ApprovalBadge = ({ approval, ...rest }) => {
@@ -45,102 +53,118 @@ const ApprovalBadge = ({ approval, ...rest }) => {
   }
 };
 
-export const RequestCard: FC<IRequestCard> = ({
+export const RequestHeader: FC<IRequestHeader> = ({
   id,
   title,
+  tags,
+  requestAmount,
   approval,
   endDate,
   approvalCount,
-  requestAmount,
-  href,
+  hideProgress,
+  hideNavigation,
 }) => {
   return (
-    <Link href={href} passHref scroll={false}>
-      <Box as='a'>
-        <Box
-          borderWidth='1px'
-          bg={approval === 'pending' ? 'yellow.200' : 'white'}
-          w='full'
-          borderColor='blackAlpha.100'
-          p='7'
-          mb='5'
-          borderRadius='md'
-          cursor='pointer'
-          transition='all 0.2s ease-in-out'
-          _hover={{
-            bg: 'blackAlpha.50',
-          }}
-        >
-          <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='space-between'
-          >
-            <Box mb='3'>
-              <Text fontSize='xl' fontWeight='500' mb='2'>
-                {title}
-              </Text>
-              <ApprovalBadge
-                approval={approval}
+    <>
+      <Box display='flex' alignItems='center' justifyContent='space-between'>
+        <Box mb='3'>
+          <Text fontSize='xl' fontWeight='500' mb='2'>
+            {title}
+          </Text>
+          <ApprovalBadge
+            approval={approval}
+            borderRadius='md'
+            textTransform='uppercase'
+            color='white'
+            fontSize='sm'
+            px='2'
+          />
+          {tags &&
+            tags.map((tag) => (
+              <Badge
+                key={tag.text}
+                bg={tag.color}
                 borderRadius='md'
                 textTransform='uppercase'
                 color='white'
                 fontSize='sm'
                 px='2'
-              />
-              <Box
-                as='span'
-                color='blackAlpha.700'
-                fontWeight='500'
-                letterSpacing='wide'
-                fontSize='md'
-                textTransform='uppercase'
                 ml='2'
               >
-                &bull; {requestAmount}
-              </Box>
-            </Box>
-            <Box as='span'>
-              <ArrowRight size={24} />
-            </Box>
+                {tag.text}
+              </Badge>
+            ))}
+          <Box
+            as='span'
+            color='blackAlpha.700'
+            fontWeight='500'
+            letterSpacing='wide'
+            fontSize='md'
+            textTransform='uppercase'
+            ml='2'
+          >
+            &bull; {requestAmount}
           </Box>
+        </Box>
+        {!hideNavigation && (
+          <Box as='span'>
+            <ArrowRight size={24} />
+          </Box>
+        )}
+      </Box>
+      <Box
+        display='flex'
+        alignItems='center'
+        justifyContent='space-between'
+        fontSize='sm'
+      >
+        <Box>
+          <Box as='span' color='gray.500' fontWeight='500'>
+            {approval !== 'pending'
+              ? moment(endDate).format('MMM DD, YYYY')
+              : `${moment(endDate).fromNow(true)} left`}
+          </Box>
+          <Box as='span' color='blackAlpha.600' ml='2'>
+            &bull; Request ID #{id}
+          </Box>
+        </Box>
+        {!hideProgress && approval === 'pending' ? (
           <Box
             display='flex'
             alignItems='center'
-            justifyContent='space-between'
-            fontSize='sm'
+            color='blackAlpha.700'
+            fontWeight='500'
           >
-            <Box>
-              <Box as='span' color='gray.500' fontWeight='500'>
-                {approval !== 'pending'
-                  ? moment(endDate).format('MMM DD, YYYY')
-                  : `${moment(endDate).fromNow(true)} left`}
-              </Box>
-              <Box as='span' color='blackAlpha.600' ml='2'>
-                &bull; Request ID #{id}
-              </Box>
-            </Box>
-            {approval === 'pending' ? (
-              <Box
-                display='flex'
-                alignItems='center'
-                color='blackAlpha.700'
-                fontWeight='500'
-              >
-                <Text as='span' mr='2'>
-                  80%
-                </Text>
-                <Progress
-                  hasStripe
-                  value={approvalCount}
-                  borderRadius='4px'
-                  size='sm'
-                  w='100px'
-                />
-              </Box>
-            ) : null}
+            <Text as='span' mr='2'>
+              80%
+            </Text>
+            <Progress
+              hasStripe
+              value={approvalCount}
+              borderRadius='4px'
+              size='sm'
+              w='100px'
+            />
           </Box>
-        </Box>
+        ) : null}
+      </Box>
+    </>
+  );
+};
+
+export const RequestCard: FC<IRequestCard> = ({ approval, href, ...rest }) => {
+  return (
+    <Link href={href} passHref scroll={false}>
+      <Box as='a' w='full'>
+        <Card
+          bg={approval === 'pending' ? 'yellow.200' : 'white'}
+          cursor='pointer'
+          _hover={{
+            bg: 'blackAlpha.50',
+          }}
+        >
+          <RequestHeader approval={approval} hideProgress={false} {...rest} />
+        </Card>
       </Box>
     </Link>
   );

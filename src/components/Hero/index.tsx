@@ -79,8 +79,8 @@ export const Hero = ({
                 }}
                 color='blackAlpha.500'
               >
-                <CaretLeft size={22} />
-                <Text fontSize='16px' fontWeight='500'>
+                <CaretLeft size={15} />
+                <Text fontSize='sm' fontWeight='500'>
                   {backButtonText}
                 </Text>
               </Button>

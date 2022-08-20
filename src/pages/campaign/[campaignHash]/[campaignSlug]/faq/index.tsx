@@ -9,8 +9,10 @@ import {
   AccordionPanel,
   Text,
   Button,
+  HStack,
 } from '@chakra-ui/react';
 
+import Card from '@/components/Card';
 import CampaignLayout from '@/layouts/Campaign';
 
 const faqs = [
@@ -67,33 +69,23 @@ const Faq = () => {
   };
 
   return (
-    <Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='space-between'
-      mb='4'
-    >
+    <HStack spacing='50px' alignItems='normal'>
       <Box w='full'>
         <Heading fontSize='xl' fontWeight='500' mb='5'>
           Frequently Asked Questions
         </Heading>
         <Accordion allowMultiple>{renderFAQs()}</Accordion>
       </Box>
-      <Box paddingLeft='20'>
-        <Box
-          borderWidth='1px'
-          borderColor='blackAlpha.100'
-          p='5'
-          borderRadius='md'
-        >
+      <Box>
+        <Card>
           <Text mb='5'>
             Don&lsquo;t see the answer to your question? Ask the project creator
             directly.
           </Text>
           <Button variant='primaryAlt'>Ask a Question</Button>
-        </Box>
+        </Card>
       </Box>
-    </Box>
+    </HStack>
   );
 };
 

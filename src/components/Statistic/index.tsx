@@ -1,5 +1,7 @@
 import React, { ReactNode, FC } from 'react';
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+
+import Card from '@/components/Card';
 
 export interface IStatistic {
   title: string;
@@ -17,14 +19,7 @@ export const Statistic: FC<IStatistic> = ({
   ...rest
 }) => {
   return (
-    <Box
-      borderWidth='1px'
-      w='full'
-      borderColor='blackAlpha.100'
-      p='5'
-      borderRadius='md'
-      {...rest}
-    >
+    <Card {...rest}>
       <Text fontSize='sm' fontWeight='500' color='blackAlpha.600' mb='2'>
         {title}
       </Text>
@@ -43,6 +38,6 @@ export const Statistic: FC<IStatistic> = ({
           </Box>
         ) : null}
       </Box>
-    </Box>
+    </Card>
   );
 };

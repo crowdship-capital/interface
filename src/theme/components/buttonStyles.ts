@@ -52,6 +52,70 @@ export const ButtonStyles = {
         boxShadow: 'none',
       },
     }),
+    success: () => ({
+      bg: 'green.500',
+      color: 'white',
+      fontWeight: '500',
+      borderRadius: 'md',
+      _hover: {
+        bg: whiten('green.500', 15),
+        _disabled: {
+          bg: whiten('green.500', 0),
+        },
+      },
+      _focus: {
+        boxShadow: 'none',
+      },
+    }),
+    'success-outlined': () => ({
+      bg: 'transparent',
+      color: 'green.500',
+      fontWeight: '500',
+      borderRadius: 'md',
+      borderWidth: '1px',
+      borderColor: 'green.500',
+      _hover: {
+        bg: 'transparent',
+        _disabled: {
+          bg: whiten('gray.50', 0),
+        },
+      },
+      _focus: {
+        boxShadow: 'none',
+      },
+    }),
+    danger: () => ({
+      bg: 'red.500',
+      color: 'white',
+      fontWeight: '500',
+      borderRadius: 'md',
+      _hover: {
+        bg: whiten('red.500', 15),
+        _disabled: {
+          bg: whiten('red.500', 0),
+        },
+      },
+      _focus: {
+        boxShadow: 'none',
+      },
+    }),
+    'danger-outlined': () => ({
+      bg: 'transparent',
+      color: 'red.500',
+      fontWeight: '500',
+      borderRadius: 'md',
+      borderWidth: '1px',
+      borderColor: 'red.500',
+      _hover: {
+        bg: 'red.50',
+        _disabled: {
+          bg: whiten('red.50', 0),
+        },
+      },
+      _focus: {
+        boxShadow: 'none',
+      },
+    }),
     plain: () => ({
       bg: 'gray.50',
       color: 'black.500',
