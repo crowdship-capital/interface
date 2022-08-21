@@ -2,11 +2,21 @@ import { darken, mode, whiten } from '@chakra-ui/theme-tools';
 
 export const progressStyles = {
   baseStyle: {
-    filledTrack: {
-      bgColor: 'green.300',
-    },
     track: {
-      bg: 'rgba(0, 0, 0, 6%)',
+      bg: 'blackAlpha.100',
+      borderRadius: '4px',
     },
+  },
+  variants: {
+    success: () => ({
+      filledTrack: {
+        bg: 'green.400',
+      },
+    }),
+    danger: () => ({
+      filledTrack: {
+        bg: 'red.400',
+      },
+    }),
   },
 };

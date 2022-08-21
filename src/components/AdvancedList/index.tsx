@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import { Trans } from '@lingui/macro';
 import {
   UnorderedList,
   ListItem,
@@ -12,12 +13,18 @@ import {
 
 import { CaretRight, ArrowRight } from 'phosphor-react';
 
+export interface IAdvancedListItem {
+  title: string;
+  subtitle?: string;
+  logo?: ReactNode;
+}
+
 export interface IAdvancedList {
-  items: [{ title: string; subtitle?: string; logo?: ReactNode }];
+  items: IAdvancedListItem[];
   showDivider?: boolean;
   showMore?: boolean;
   showNavigation?: boolean;
-  showFirst: number;
+  showFirst?: number;
 }
 
 export const AdvancedList: FC<IAdvancedList> = ({
@@ -29,44 +36,68 @@ export const AdvancedList: FC<IAdvancedList> = ({
 }) => {
   return (
     <>
-      <UnorderedList listStyleType='none'>
+      <UnorderedList listStyleType='none' p='0' m='0'>
         {items.map(({ title, subtitle, logo }, idx) => {
           if (idx <= showFirst - 1) {
             return (
               <>
-                <ListItem key={title}>
-                  <HStack spacing='10px'>
-                    {logo && <Box>{logo}</Box>}
-                    <Box>
-                      <Text fontSize='xl' fontWeight='500'>
-                        {title}
-                      </Text>
-                      {title && (
-                        <Text fontSize='sm' color='black.300'>
-                          {subtitle}
+                {showDivider ? <Divider borderColor='blackAlpha.100' /> : null}
+                <ListItem
+                  key={title}
+                  p='3'
+                  cursor='pointer'
+                  _hover={{
+                    bg: 'blackAlpha.50',
+                  }}
+                >
+                  <Box
+                    display='flex'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    mx='5'
+                  >
+                    <Box display='flex' alignItems='center'>
+                      {logo && <Box mr='3'>{logo}</Box>}
+                      <Box>
+                        <Text fontWeight='500' noOfLines={1} isTruncated>
+                          {title}
                         </Text>
-                      )}
+                        {title && (
+                          <Text fontSize='sm' color='blackAlpha.700'>
+                            {subtitle}
+                          </Text>
+                        )}
+                      </Box>
                     </Box>
                     {showNavigation && (
-                      <IconButton aria-label='view' icon={<CaretRight />} />
+                      <IconButton
+                        variant='ghost'
+                        aria-label='view'
+                        icon={<CaretRight />}
+                      />
                     )}
-                  </HStack>
+                  </Box>
                 </ListItem>
-                {items.length !== 1 &&
-                idx === items.length - 1 &&
-                showDivider ? (
-                  <Divider bg='blackAlpha.100' />
-                ) : null}
               </>
             );
           }
         })}
         {showMore && (
-          <Box>
-            <Button rightIcon={<ArrowRight />}>View all</Button>
-          </Box>
+          <HStack justifyContent='flex-end' p='3'>
+            <Button variant='ghost' fontWeight='500' rightIcon={<ArrowRight />}>
+              <Trans>View all</Trans>
+            </Button>
+          </HStack>
         )}
       </UnorderedList>
     </>
   );
+};
+
+AdvancedList.defaultProps = {
+  items: [],
+  showDivider: true,
+  showMore: true,
+  showNavigation: true,
+  showFirst: 5,
 };

@@ -218,6 +218,7 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
             pb='0'
             shadow='xl'
             overflow='hidden'
+            zIndex={9999}
           >
             {renderMenuItems()}
           </MenuList>

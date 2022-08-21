@@ -197,14 +197,7 @@ const CampaignLayout = ({ children }) => {
                     $20k
                   </Heading>
                   <Text mb='2'>raised of $30k goal</Text>
-                  <Progress
-                    value={90}
-                    backgroundColor='blackAlpha.100'
-                    colorScheme='green'
-                    borderRadius='4px'
-                    size='sm'
-                    w='full'
-                  />
+                  <Progress value={90} variant='success' size='sm' />
                 </Box>
                 <Box
                   display='flex'

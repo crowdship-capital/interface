@@ -1,34 +1,88 @@
 import { FC } from 'react';
+import moment from 'moment';
 import { Trans } from '@lingui/macro';
+import { formatNumber } from 'accounting';
 import CampaignLayout from '@/layouts/Campaign';
-import { Box, Button, Text, HStack, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Text,
+  HStack,
+  VStack,
+  Progress,
+  Divider,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { CaretLeft, X, Check } from 'phosphor-react';
+import {
+  CaretLeft,
+  X,
+  XCircle,
+  Check,
+  CheckCircle,
+  SpinnerGap,
+} from 'phosphor-react';
+import Avatar from 'boring-avatars';
 
 import { RequestHeader } from '@/components/RequestCard';
 import Card from '@/components/Card';
-import { AdvancedList } from '@/components/AdvancedList';
+import { AdvancedList, IAdvancedListItem } from '@/components/AdvancedList';
+import { Timeline } from '@/components/Timeline';
+
+import AVATAR_COLORS from '@/constants/avatar-colors';
+import { generateSlicedAddress } from '@/utils/address';
 
 interface IVoteList {
   title: string;
   voteCount: number;
-  recentVotes: [{ address: string; dateAdded: string }];
+  voters: IAdvancedListItem[];
+  progress: number;
+  variant: 'success' | 'danger';
+  theme: string;
 }
-const VoteList: FC<IVoteList> = ({ title, voteCount, recentVotes }) => {
+
+const VoteList: FC<IVoteList> = ({
+  title,
+  voteCount,
+  voters,
+  progress,
+  variant,
+  theme,
+}) => {
   return (
-    <Card>
-      <Box display='flex' alignItems='center'>
-        <Text fontSize='xl' fontWeight='500' mb='2'>
+    <Card p='0' bg={theme}>
+      <Box
+        display='flex'
+        alignItems='center'
+        p='5'
+        justifyContent='space-between'
+      >
+        <Text fontSize='lg' fontWeight='500' mb='2'>
           {title}
         </Text>
+        <Box>
+          <Text fontSize='lg' fontWeight='500' mb='2'>
+            {voteCount} <Trans>Votes</Trans>
+          </Text>
+          <Progress value={progress} variant={variant} size='sm' />
+        </Box>
       </Box>
-      <AdvancedList
-        items={[{ title: 'User', subtitle: '2020-18-20', logo: <></> }]}
-        showFirst={5}
-      />
+      <AdvancedList items={voters} showFirst={5} />
     </Card>
   );
 };
+
+const VOTERS = Array.from({ length: 10 }, (_, i) => ({
+  title: generateSlicedAddress('0x0000000000000000000000000000000000000000'),
+  subtitle: `Voted ${moment().fromNow()}`,
+  logo: (
+    <Avatar
+      size={40}
+      name='0x0000000000000000000000000000000000000000'
+      variant='marble'
+      colors={AVATAR_COLORS}
+    />
+  ),
+}));
 
 const Request = () => {
   const router = useRouter();
@@ -93,13 +147,19 @@ const Request = () => {
           <HStack spacing='20px'>
             <VoteList
               title='For'
-              voteCount={1300000}
-              recentVotes={[{ address: '', dateAdded: '' }]}
+              voteCount={formatNumber(1300000)}
+              voters={VOTERS}
+              progress={70}
+              variant='success'
+              theme='green.100'
             />
             <VoteList
               title='Against'
-              voteCount={300000}
-              recentVotes={[{ address: '', dateAdded: '' }]}
+              voteCount={formatNumber(300000)}
+              voters={VOTERS}
+              progress={30}
+              variant='danger'
+              theme='red.100'
             />
           </HStack>
           <HStack spacing='20px' alignItems='baseline'>
@@ -163,16 +223,75 @@ const Request = () => {
               </Card>
             </VStack>
             <VStack w='xl' spacing='20px'>
-              <Card>
-                <Text fontSize='lg' fontWeight='500'>
+              <Card p='0'>
+                <Text fontSize='lg' fontWeight='500' p='5'>
                   <Trans>Request history</Trans>
                 </Text>
-                <Text></Text>
+                <Divider />
+                <Box p='5'>
+                  <Timeline
+                    timelines={[
+                      {
+                        logo: (
+                          <CheckCircle
+                            size={25}
+                            color='#48BB78'
+                            weight='bold'
+                          />
+                        ),
+                        title: 'Created',
+                        date: moment().fromNow(),
+                      },
+                      {
+                        logo: <SpinnerGap size={25} weight='bold' />,
+                        title: 'Active',
+                        date: moment().fromNow(),
+                      },
+                      {
+                        logo: (
+                          <XCircle size={25} color='#F56565' weight='bold' />
+                        ),
+                        title: 'Failed',
+                        date: moment().fromNow(),
+                      },
+                      {
+                        logo: (
+                          <CheckCircle
+                            size={25}
+                            color='#48BB78'
+                            weight='bold'
+                          />
+                        ),
+                        title: 'Success',
+                        date: moment().fromNow(),
+                      },
+                    ]}
+                  />
+                </Box>
               </Card>
-              <Card>
-                <Text fontSize='lg' fontWeight='500'>
+              <Card p='0'>
+                <Text fontSize='lg' fontWeight='500' p='4'>
                   <Trans>Request creator</Trans>
                 </Text>
+                <AdvancedList
+                  items={[
+                    {
+                      title: generateSlicedAddress(
+                        '0x0000000000000000000000000000000000000000'
+                      ),
+                      subtitle: `Created ${moment().fromNow()}`,
+                      logo: (
+                        <Avatar
+                          size={40}
+                          name='0x0000000000000000000000000000000000000000'
+                          variant='marble'
+                          colors={AVATAR_COLORS}
+                        />
+                      ),
+                    },
+                  ]}
+                  showMore={false}
+                />
               </Card>
             </VStack>
           </HStack>

@@ -70,14 +70,7 @@ const SpecialCampaignCard = ({
           <Text color='white' fontWeight='700' mr='7px' fontSize='12px'>
             60%
           </Text>
-          <Progress
-            value={60}
-            backgroundColor='whiteAlpha.400'
-            colorScheme='green'
-            borderRadius='4px'
-            size='sm'
-            w='full'
-          />
+          <Progress value={60} size='sm' variant='success' w='full' />
         </Box>
       </Box>
     </Flex>
@@ -163,13 +156,7 @@ const AltCampaignCard = ({
         <Text fontWeight='700' mr='7px' fontSize='12px'>
           5%
         </Text>
-        <Progress
-          value={5}
-          colorScheme='green'
-          borderRadius='4px'
-          size='sm'
-          w='full'
-        />
+        <Progress value={5} size='sm' variant='success' w='full' />
       </Box>
       <Box
         display='flex'

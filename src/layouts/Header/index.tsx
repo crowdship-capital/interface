@@ -1,14 +1,12 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import {
   Box,
   Flex,
   HStack,
   Button,
   Text,
-  Kbd,
   MenuItem,
   MenuDivider,
 } from '@chakra-ui/react';
@@ -38,6 +36,7 @@ import {
   useProfileOverviewModal,
   useSearchModal,
 } from '@/store/application/hooks';
+import AVATAR_COLORS from '@/constants/avatar-colors';
 
 const NavLink = ({
   children,
@@ -234,7 +233,7 @@ const Header = () => {
             size={100}
             name={wallet?.accounts?.[0]?.address}
             variant='marble'
-            colors={['#A3A948', '#EDB92E', '#F85931', '#CE1836', '#009989']}
+            colors={AVATAR_COLORS}
           />
         }
         onClose={() => {
@@ -303,13 +302,7 @@ const Header = () => {
                       size={30}
                       name={wallet?.accounts?.[0]?.address}
                       variant='marble'
-                      colors={[
-                        '#A3A948',
-                        '#EDB92E',
-                        '#F85931',
-                        '#CE1836',
-                        '#009989',
-                      ]}
+                      colors={AVATAR_COLORS}
                     />
                   ),
                 }}

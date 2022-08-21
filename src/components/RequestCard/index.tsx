@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 
-import { Box, Text, Badge, Progress } from '@chakra-ui/react';
+import { Box, Heading, Text, Badge, Progress } from '@chakra-ui/react';
 import { ArrowRight } from 'phosphor-react';
 
 import Card from '@/components/Card';
@@ -68,9 +68,9 @@ export const RequestHeader: FC<IRequestHeader> = ({
     <>
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <Box mb='3'>
-          <Text fontSize='xl' fontWeight='500' mb='2'>
+          <Heading fontSize='xl' fontWeight='500' mb='2'>
             {title}
-          </Text>
+          </Heading>
           <ApprovalBadge
             approval={approval}
             borderRadius='md'
@@ -141,8 +141,8 @@ export const RequestHeader: FC<IRequestHeader> = ({
             <Progress
               hasStripe
               value={approvalCount}
-              borderRadius='4px'
               size='sm'
+              variant='success'
               w='100px'
             />
           </Box>
