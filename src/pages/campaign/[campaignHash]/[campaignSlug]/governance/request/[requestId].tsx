@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import moment from 'moment';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { formatNumber } from 'accounting';
 import CampaignLayout from '@/layouts/Campaign';
 import {
@@ -71,9 +71,21 @@ const VoteList: FC<IVoteList> = ({
   );
 };
 
+const Section = ({ children, title }) => {
+  return (
+    <Card p='0'>
+      <Text fontSize='lg' fontWeight='500' p='5'>
+        {title}
+      </Text>
+      <Divider />
+      {children}
+    </Card>
+  );
+};
+
 const VOTERS = Array.from({ length: 10 }, (_, i) => ({
   title: generateSlicedAddress('0x0000000000000000000000000000000000000000'),
-  subtitle: `Voted ${moment().fromNow()}`,
+  subtitle: t`Voted ${moment().fromNow()}`,
   logo: (
     <Avatar
       size={40}
@@ -146,7 +158,7 @@ const Request = () => {
         <VStack w='full' alignItems='normal' spacing='20px'>
           <HStack spacing='20px'>
             <VoteList
-              title='For'
+              title={t`For`}
               voteCount={formatNumber(1300000)}
               voters={VOTERS}
               progress={70}
@@ -154,7 +166,7 @@ const Request = () => {
               theme='green.100'
             />
             <VoteList
-              title='Against'
+              title={t`Against`}
               voteCount={formatNumber(300000)}
               voters={VOTERS}
               progress={30}
@@ -164,11 +176,8 @@ const Request = () => {
           </HStack>
           <HStack spacing='20px' alignItems='baseline'>
             <VStack w='full' spacing='20px'>
-              <Card>
-                <Text fontSize='lg' fontWeight='500' mb='30px'>
-                  <Trans>Description</Trans>
-                </Text>
-                <Text>
+              <Section title={t`Description`}>
+                <Text p='5'>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -202,12 +211,9 @@ const Request = () => {
                   years, sometimes by accident, sometimes on purpose (injected
                   humour and the like).
                 </Text>
-              </Card>
-              <Card>
-                <Text fontSize='lg' fontWeight='500' mb='30px'>
-                  <Trans>Summary</Trans>
-                </Text>
-                <Text>
+              </Section>
+              <Section title={t`Summary`}>
+                <Text p='5'>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -220,14 +226,10 @@ const Request = () => {
                   sometimes by accident, sometimes on purpose (injected humour
                   and the like).
                 </Text>
-              </Card>
+              </Section>
             </VStack>
             <VStack w='xl' spacing='20px'>
-              <Card p='0'>
-                <Text fontSize='lg' fontWeight='500' p='5'>
-                  <Trans>Request history</Trans>
-                </Text>
-                <Divider />
+              <Section title={t`Request history`}>
                 <Box p='5'>
                   <Timeline
                     timelines={[
@@ -239,19 +241,19 @@ const Request = () => {
                             weight='bold'
                           />
                         ),
-                        title: 'Created',
+                        title: t`Created`,
                         date: moment().fromNow(),
                       },
                       {
                         logo: <SpinnerGap size={25} weight='bold' />,
-                        title: 'Active',
+                        title: t`Active`,
                         date: moment().fromNow(),
                       },
                       {
                         logo: (
                           <XCircle size={25} color='#F56565' weight='bold' />
                         ),
-                        title: 'Failed',
+                        title: t`Failed`,
                         date: moment().fromNow(),
                       },
                       {
@@ -262,24 +264,21 @@ const Request = () => {
                             weight='bold'
                           />
                         ),
-                        title: 'Success',
+                        title: t`Success`,
                         date: moment().fromNow(),
                       },
                     ]}
                   />
                 </Box>
-              </Card>
-              <Card p='0'>
-                <Text fontSize='lg' fontWeight='500' p='4'>
-                  <Trans>Request creator</Trans>
-                </Text>
+              </Section>
+              <Section title={t`Request Creator`}>
                 <AdvancedList
                   items={[
                     {
                       title: generateSlicedAddress(
                         '0x0000000000000000000000000000000000000000'
                       ),
-                      subtitle: `Created ${moment().fromNow()}`,
+                      subtitle: t`Created ${moment().fromNow()}`,
                       logo: (
                         <Avatar
                           size={40}
@@ -292,7 +291,7 @@ const Request = () => {
                   ]}
                   showMore={false}
                 />
-              </Card>
+              </Section>
             </VStack>
           </HStack>
         </VStack>

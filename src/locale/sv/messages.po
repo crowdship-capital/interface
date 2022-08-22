@@ -13,56 +13,126 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:287
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:249
+msgid "Active"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:153
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:169
+msgid "Against"
+msgstr ""
+
+#: src/layouts/Campaign/index.tsx:241
 msgid "Back Campaign"
 msgstr "Tillbaka kampanj"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:297
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:126
+msgid "Back to requests"
+msgstr ""
+
+#: src/layouts/Campaign/index.tsx:259
+msgid "Collaborators"
+msgstr ""
+
+#: src/layouts/Campaign/index.tsx:251
 msgid "Create Request"
 msgstr "Skapa förfrågan"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:301
+#: src/layouts/Campaign/index.tsx:255
 msgid "Create Reward"
 msgstr "Skapa belöning"
 
-#: src/pages/index.tsx:75
-#: src/pages/index.tsx:98
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:244
+msgid "Created"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:281
+msgid "Created {0}"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:179
+msgid "Description"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:256
+msgid "Failed"
+msgstr ""
+
+#: src/pages/index.tsx:74
+#: src/pages/index.tsx:97
 msgid "Find out how"
 msgstr "Ta reda på hur"
 
-#: src/pages/index.tsx:93
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:145
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:161
+msgid "For"
+msgstr ""
+
+#: src/pages/index.tsx:92
 msgid "Get your projects funded the crypto way. No BS"
 msgstr "Få dina projekt finansierade på kryptovägen. Ingen BS"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:293
+#: src/layouts/Campaign/index.tsx:247
 msgid "Manage Campaign"
 msgstr "Hantera kampanj"
 
-#: src/pages/index.tsx:70
+#: src/pages/index.tsx:69
 msgid "No bullsh*t support for your favorite projects"
 msgstr "Inget bullsh*t-stöd för dina favoritprojekt"
 
-#: src/pages/index.tsx:190
+#: src/pages/index.tsx:189
 msgid "Over 300 crew members joined today"
 msgstr "Över 300 besättningsmedlemmar anslöt sig idag"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:306
+#: src/layouts/Campaign/index.tsx:264
 msgid "Report Campaign"
 msgstr "Rapportera kampanj"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:344
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:274
+msgid "Request Creator"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:232
+msgid "Request history"
+msgstr ""
+
+#: src/layouts/Campaign/index.tsx:296
 msgid "Save"
 msgstr "Spara"
 
-#: src/pages/index.tsx:240
-#: src/pages/index.tsx:265
+#: src/pages/index.tsx:239
+#: src/pages/index.tsx:264
 msgid "See all"
 msgstr "Se allt"
 
-#: src/pages/index.tsx:185
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:267
+msgid "Success"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:215
+msgid "Summary"
+msgstr ""
+
+#: src/components/AdvancedList/index.tsx:87
+msgid "View all"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:88
+msgid "Voted {0}"
+msgstr ""
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:64
+msgid "Votes"
+msgstr ""
+
+#: src/pages/index.tsx:184
 msgid "Your favourite projects, backed by crypto!"
 msgstr "Dina favoritprojekt, uppbackade av krypto!"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:277
+#: src/layouts/Campaign/index.tsx:231
 msgid "{acceptedCurrency} accepted"
 msgstr "{acceptedCurrency} accepterad"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:78
+#~ msgid "{title}"
+#~ msgstr ""

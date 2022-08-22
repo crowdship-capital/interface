@@ -5,6 +5,7 @@ import { InputStyles as Input } from '@/theme/components/inputStyles';
 import { NumberInputStyles as NumberInput } from '@/theme/components/numberInputStyles';
 import { alertStyles as Alert } from '@/theme/components/alertStyles';
 import { progressStyles as Progress } from './components/progressStyle';
+import { dividerStyles as Divider } from './components/dividerStyles';
 
 const overrides = extendTheme({
   styles: {
@@ -57,6 +58,7 @@ const overrides = extendTheme({
     NumberInput,
     Alert,
     Progress,
+    Divider,
   },
 });
 

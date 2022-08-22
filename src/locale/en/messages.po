@@ -13,56 +13,126 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:287
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:249
+msgid "Active"
+msgstr "Active"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:153
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:169
+msgid "Against"
+msgstr "Against"
+
+#: src/layouts/Campaign/index.tsx:241
 msgid "Back Campaign"
 msgstr "Back Campaign"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:297
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:126
+msgid "Back to requests"
+msgstr "Back to requests"
+
+#: src/layouts/Campaign/index.tsx:259
+msgid "Collaborators"
+msgstr "Collaborators"
+
+#: src/layouts/Campaign/index.tsx:251
 msgid "Create Request"
 msgstr "Create Request"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:301
+#: src/layouts/Campaign/index.tsx:255
 msgid "Create Reward"
 msgstr "Create Reward"
 
-#: src/pages/index.tsx:75
-#: src/pages/index.tsx:98
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:244
+msgid "Created"
+msgstr "Created"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:281
+msgid "Created {0}"
+msgstr "Created {0}"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:179
+msgid "Description"
+msgstr "Description"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:256
+msgid "Failed"
+msgstr "Failed"
+
+#: src/pages/index.tsx:74
+#: src/pages/index.tsx:97
 msgid "Find out how"
 msgstr "Find out how"
 
-#: src/pages/index.tsx:93
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:145
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:161
+msgid "For"
+msgstr "For"
+
+#: src/pages/index.tsx:92
 msgid "Get your projects funded the crypto way. No BS"
 msgstr "Get your projects funded the crypto way. No BS"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:293
+#: src/layouts/Campaign/index.tsx:247
 msgid "Manage Campaign"
 msgstr "Manage Campaign"
 
-#: src/pages/index.tsx:70
+#: src/pages/index.tsx:69
 msgid "No bullsh*t support for your favorite projects"
 msgstr "No bullsh*t support for your favorite projects"
 
-#: src/pages/index.tsx:190
+#: src/pages/index.tsx:189
 msgid "Over 300 crew members joined today"
 msgstr "Over 300 crew members joined today"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:306
+#: src/layouts/Campaign/index.tsx:264
 msgid "Report Campaign"
 msgstr "Report Campaign"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:344
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:274
+msgid "Request Creator"
+msgstr "Request Creator"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:232
+msgid "Request history"
+msgstr "Request history"
+
+#: src/layouts/Campaign/index.tsx:296
 msgid "Save"
 msgstr "Save"
 
-#: src/pages/index.tsx:240
-#: src/pages/index.tsx:265
+#: src/pages/index.tsx:239
+#: src/pages/index.tsx:264
 msgid "See all"
 msgstr "See all"
 
-#: src/pages/index.tsx:185
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:267
+msgid "Success"
+msgstr "Success"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:215
+msgid "Summary"
+msgstr "Summary"
+
+#: src/components/AdvancedList/index.tsx:87
+msgid "View all"
+msgstr "View all"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:88
+msgid "Voted {0}"
+msgstr "Voted {0}"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:64
+msgid "Votes"
+msgstr "Votes"
+
+#: src/pages/index.tsx:184
 msgid "Your favourite projects, backed by crypto!"
 msgstr "Your favourite projects, backed by crypto!"
 
-#: src/pages/campaign/[campaignHash]/[campaignSlug]/index.tsx:277
+#: src/layouts/Campaign/index.tsx:231
 msgid "{acceptedCurrency} accepted"
 msgstr "{acceptedCurrency} accepted"
+
+#: src/pages/campaign/[campaignHash]/[campaignSlug]/governance/request/[requestId].tsx:78
+#~ msgid "{title}"
+#~ msgstr "{title}"

@@ -40,10 +40,9 @@ export const AdvancedList: FC<IAdvancedList> = ({
         {items.map(({ title, subtitle, logo }, idx) => {
           if (idx <= showFirst - 1) {
             return (
-              <>
-                {showDivider ? <Divider borderColor='blackAlpha.100' /> : null}
+              <Box key={idx}>
+                {showDivider ? <Divider /> : null}
                 <ListItem
-                  key={title}
                   p='3'
                   cursor='pointer'
                   _hover={{
@@ -78,7 +77,7 @@ export const AdvancedList: FC<IAdvancedList> = ({
                     )}
                   </Box>
                 </ListItem>
-              </>
+              </Box>
             );
           }
         })}
