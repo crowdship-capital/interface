@@ -33,7 +33,7 @@ import useMakeUrl from '@/hooks/useMakeUrl';
 import { Statistic } from '@/components/Statistic';
 import { Pagination } from '@/components/Pagination';
 import { RequestCard } from '@/components/RequestCard';
-import Card from '@/components/Card';
+import { Card } from '@/components/Card';
 
 const requests = [
   {
@@ -91,8 +91,12 @@ const Governance = () => {
   const makeUrl = useMakeUrl();
 
   return (
-    <HStack alignItems='normal' spacing='50px'>
-      <Box w='full'>
+    <HStack
+      alignItems='normal'
+      spacing={{ base: '0px', xl: '50px' }}
+      flexWrap={{ base: 'wrap', xl: 'nowrap' }}
+    >
+      <Box w={{ base: '100%', xl: '70%' }}>
         <Box mb='10'>
           <Heading fontSize='xl' fontWeight='500' mb='5'>
             Overview
@@ -188,7 +192,7 @@ const Governance = () => {
           </Box>
         </Box>
       </Box>
-      <Box>
+      <Box w={{ base: '100%', xl: '30%' }}>
         <Card>
           <Text mb='5'>
             CDS tokens represent voting shares in Crowdship governance. You can

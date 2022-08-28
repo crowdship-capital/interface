@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Box, Text, Select, IconButton } from '@chakra-ui/react';
 
 import { CaretLeft, CaretRight } from 'phosphor-react';
 
-export const Pagination = () => {
+export const Pagination: FC<{ onNext?: () => void; onPrev?: () => void }> = ({
+  onNext,
+  onPrev,
+}) => {
   return (
     <Box display='flex' alignItems='center' justifyContent='space-between'>
       <Box display='flex' alignItems='center'>
@@ -36,12 +39,14 @@ export const Pagination = () => {
             variant='ghost'
             size='sm'
             icon={<CaretLeft size={15} />}
+            onClick={onNext}
           />
           <IconButton
             aria-label='Next'
             variant='ghost'
             size='sm'
             icon={<CaretRight size={15} />}
+            onClick={onPrev}
           />
         </Box>
       </Box>

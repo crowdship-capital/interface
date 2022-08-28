@@ -18,6 +18,7 @@ import {
   useStyleConfig,
   Tooltip,
   Container,
+  HStack,
 } from '@chakra-ui/react';
 
 import {
@@ -41,6 +42,7 @@ import MainLayout from '@/layouts/Main';
 import { Hero } from '@/components/Hero';
 import { Gallery } from '@/components/Gallery';
 import { AdvancedMenu } from '@/components/AdvancedMenu';
+import { RewardList } from '@/components/RewardCard';
 
 import BusdIcon from '@/public/images/busd.svg';
 import UsdtIcon from '@/public/images/usdt.svg';
@@ -65,7 +67,7 @@ const CustomTab = (props) => {
   );
 };
 
-const CampaignLayout = ({ children }) => {
+const CampaignLayout = ({ children, withReward }) => {
   const { asPath, query } = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
   const makeUrl = useMakeUrl();
@@ -323,7 +325,22 @@ const CampaignLayout = ({ children }) => {
           <Container maxW='1240px' paddingTop='10'>
             <TabPanels>
               {tabs.map((_, idx) => (
-                <TabPanel key={idx}>{children}</TabPanel>
+                <TabPanel key={idx}>
+                  {withReward ? (
+                    <HStack
+                      spacing={{ base: '0px', xl: '50px' }}
+                      alignItems='normal'
+                      flexWrap={{ base: 'wrap', xl: 'nowrap' }}
+                    >
+                      <Box w={{ base: '100%', xl: '70%' }}>{children}</Box>
+                      <Box w={{ base: '100%', xl: '30%' }}>
+                        <RewardList rewards={[]} />
+                      </Box>
+                    </HStack>
+                  ) : (
+                    children
+                  )}
+                </TabPanel>
               ))}
             </TabPanels>
           </Container>

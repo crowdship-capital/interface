@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Divider, Text } from '@chakra-ui/react';
 
-const Card = ({ children, ...rest }) => {
+export const Card = ({ children, ...rest }) => {
   return (
     <Box
       borderWidth='1px'
@@ -16,4 +16,14 @@ const Card = ({ children, ...rest }) => {
   );
 };
 
-export default Card;
+export const CardSection = ({ children, title }) => {
+  return (
+    <Card p='0'>
+      <Text fontSize='lg' fontWeight='500' p='5'>
+        {title}
+      </Text>
+      <Divider />
+      {children}
+    </Card>
+  );
+};

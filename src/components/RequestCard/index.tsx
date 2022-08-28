@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Box, Heading, Text, Badge, Progress } from '@chakra-ui/react';
 import { ArrowRight } from 'phosphor-react';
 
-import Card from '@/components/Card';
+import { Card } from '@/components/Card';
 
 export interface IRequestCard {
   id?: string;

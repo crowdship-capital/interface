@@ -1,7 +1,7 @@
 import React, { ReactNode, FC } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-import Card from '@/components/Card';
+import { Card } from '@/components/Card';
 
 export interface IStatistic {
   title: string;

@@ -10,7 +10,6 @@ import type { AppProps } from 'next/app';
 import { OnboardProvider } from '@/context/OnboardContext';
 import GlobalProvider from '@/context/GlobalContext';
 
-import Body from '@/layouts/Main';
 import theme from '@/theme/theme';
 
 import loadLocale from '@/utils/load-locale';
@@ -26,7 +25,8 @@ import '@/connectors/locale-init';
 
 type ComponentWithPageLayout = AppProps & {
   Component: AppProps['Component'] & {
-    PageLayout?: React.ComponentType;
+    PageLayout?: React.ComponentType<{ withReward: boolean }>;
+    withReward: boolean;
   };
 };
 
@@ -59,7 +59,7 @@ const MyApp = ({
           <GlobalProvider>
             <OnboardProvider>
               {Component.PageLayout ? (
-                <Component.PageLayout>
+                <Component.PageLayout withReward={Component.withReward}>
                   <Component {...pageProps} />
                 </Component.PageLayout>
               ) : (

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Trans } from '@lingui/macro';
 import {
   Box,
   Heading,
@@ -12,7 +13,7 @@ import {
   HStack,
 } from '@chakra-ui/react';
 
-import Card from '@/components/Card';
+import { Card } from '@/components/Card';
 import CampaignLayout from '@/layouts/Campaign';
 
 const faqs = [
@@ -69,20 +70,29 @@ const Faq = () => {
   };
 
   return (
-    <HStack spacing='50px' alignItems='normal'>
-      <Box w='full'>
+    <HStack
+      alignItems='normal'
+      spacing={{ base: '0px', xl: '50px' }}
+      flexWrap={{ base: 'wrap', xl: 'nowrap' }}
+    >
+      <Box w={{ base: '100%', xl: '70%' }}>
         <Heading fontSize='xl' fontWeight='500' mb='5'>
-          Frequently Asked Questions
+          <Trans>Frequently Asked Questions</Trans>
         </Heading>
         <Accordion allowMultiple>{renderFAQs()}</Accordion>
       </Box>
-      <Box>
+      <Box w={{ base: '100%', xl: '30%' }}>
         <Card>
           <Text mb='5'>
-            Don&lsquo;t see the answer to your question? Ask the project creator
+            <Trans>
+              Don&lsquo;t see the answer to your question? Ask the project
+              creator
+            </Trans>
             directly.
           </Text>
-          <Button variant='primaryAlt'>Ask a Question</Button>
+          <Button variant='primaryAlt'>
+            <Trans>Ask a Question</Trans>
+          </Button>
         </Card>
       </Box>
     </HStack>

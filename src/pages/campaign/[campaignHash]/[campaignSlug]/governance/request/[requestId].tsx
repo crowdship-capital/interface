@@ -3,15 +3,7 @@ import moment from 'moment';
 import { Trans, t } from '@lingui/macro';
 import { formatNumber } from 'accounting';
 import CampaignLayout from '@/layouts/Campaign';
-import {
-  Box,
-  Button,
-  Text,
-  HStack,
-  VStack,
-  Progress,
-  Divider,
-} from '@chakra-ui/react';
+import { Box, Button, Text, HStack, VStack, Progress } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import {
   CaretLeft,
@@ -24,7 +16,7 @@ import {
 import Avatar from 'boring-avatars';
 
 import { RequestHeader } from '@/components/RequestCard';
-import Card from '@/components/Card';
+import { Card, CardSection } from '@/components/Card';
 import { AdvancedList, IAdvancedListItem } from '@/components/AdvancedList';
 import { Timeline } from '@/components/Timeline';
 
@@ -67,18 +59,6 @@ const VoteList: FC<IVoteList> = ({
         </Box>
       </Box>
       <AdvancedList items={voters} showFirst={5} />
-    </Card>
-  );
-};
-
-const Section = ({ children, title }) => {
-  return (
-    <Card p='0'>
-      <Text fontSize='lg' fontWeight='500' p='5'>
-        {title}
-      </Text>
-      <Divider />
-      {children}
     </Card>
   );
 };
@@ -176,7 +156,7 @@ const Request = () => {
           </HStack>
           <HStack spacing='20px' alignItems='baseline'>
             <VStack w='full' spacing='20px'>
-              <Section title={t`Description`}>
+              <CardSection title={t`Description`}>
                 <Text p='5'>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
@@ -211,8 +191,8 @@ const Request = () => {
                   years, sometimes by accident, sometimes on purpose (injected
                   humour and the like).
                 </Text>
-              </Section>
-              <Section title={t`Summary`}>
+              </CardSection>
+              <CardSection title={t`Summary`}>
                 <Text p='5'>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
@@ -226,10 +206,10 @@ const Request = () => {
                   sometimes by accident, sometimes on purpose (injected humour
                   and the like).
                 </Text>
-              </Section>
+              </CardSection>
             </VStack>
             <VStack w='xl' spacing='20px'>
-              <Section title={t`Request history`}>
+              <CardSection title={t`Request history`}>
                 <Box p='5'>
                   <Timeline
                     timelines={[
@@ -270,8 +250,8 @@ const Request = () => {
                     ]}
                   />
                 </Box>
-              </Section>
-              <Section title={t`Request Creator`}>
+              </CardSection>
+              <CardSection title={t`Request Creator`}>
                 <AdvancedList
                   items={[
                     {
@@ -291,7 +271,7 @@ const Request = () => {
                   ]}
                   showMore={false}
                 />
-              </Section>
+              </CardSection>
             </VStack>
           </HStack>
         </VStack>
