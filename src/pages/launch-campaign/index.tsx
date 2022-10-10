@@ -604,7 +604,10 @@ const Launch: NextPage = () => {
       );
 
       campaignFactory.on('CampaignDeployed', (_campaignFactory) => {
-        const campaignUrl = makeUrl('/', `campaign/${_id}/${campaignSlug}`);
+        const campaignUrl = makeUrl(
+          '/',
+          `campaign/${_id}/${campaignSlug}/details`
+        );
         Router.push(campaignUrl);
       });
     } catch (error) {
