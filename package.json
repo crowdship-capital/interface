@@ -10,7 +10,10 @@
     "contracts:compile": "typechain --target ethers-v5 --out-dir src/types/contracts './src/abis/**/*.json'",
     "i18n:extract": "NODE_ENV=development lingui extract",
     "i18n:compile": "yarn i18n:extract && lingui compile",
-    "i18n:pseudo": "lingui extract --locale pseudo && lingui compile"
+    "i18n:pseudo": "lingui extract --locale pseudo && lingui compile",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
@@ -90,6 +93,7 @@
     "eslint-config-next": "11.1.2",
     "husky": "^8.0.1",
     "ignore-loader": "^0.1.2",
+    "pinst": "^3.0.0",
     "postcss": "^8.3.8",
     "typechain": "^8.0.0",
     "typescript": "4.4.3"
