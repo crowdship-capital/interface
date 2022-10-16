@@ -8,7 +8,7 @@ import {
   DrawerContent,
   DrawerBody,
   DrawerCloseButton,
-  Box,
+  Box
 } from '@chakra-ui/react';
 import { Info } from 'phosphor-react';
 
@@ -35,7 +35,7 @@ export const initialProps: INotificationBar = {
   loading: false,
   isOpen: false,
   position: 'top',
-  type: 'info',
+  type: 'info'
 };
 
 export const NotificationBar: FC<INotificationBar> = ({
@@ -49,7 +49,7 @@ export const NotificationBar: FC<INotificationBar> = ({
   onClose,
   position,
   type,
-  showButton,
+  showButton
 }) => {
   const renderBgColor = () => {
     switch (type) {
@@ -86,25 +86,25 @@ export const NotificationBar: FC<INotificationBar> = ({
     >
       <DrawerOverlay />
       <DrawerContent backgroundColor={renderBgColor()}>
-        <DrawerCloseButton top='16px' color='#FFFFFF' />
+        <DrawerCloseButton top="16px" color="#FFFFFF" />
         <DrawerBody>
           <Center
-            alignItems='center'
-            maxWidth='container.lg'
-            margin='0 auto'
-            minHeight='45'
+            alignItems="center"
+            maxWidth="container.lg"
+            margin="0 auto"
+            minHeight="45"
           >
-            <Box display='flex'>
+            <Box display="flex">
               {icon && (
                 <Box marginRight={1} color={renderTextColor()}>
                   {icon}
                 </Box>
               )}
               <Text
-                as='h3'
+                as="h3"
                 marginRight={5}
-                fontSize='17px'
-                fontWeight='500'
+                fontSize="17px"
+                fontWeight="500"
                 color={renderTextColor()}
               >
                 {title}

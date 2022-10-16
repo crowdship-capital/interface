@@ -6,7 +6,7 @@ import {
   Heartbeat,
   Tree,
   AirplaneTilt,
-  Planet,
+  Planet
 } from 'phosphor-react';
 
 export const CategoryIcon: FC<{
@@ -17,19 +17,19 @@ export const CategoryIcon: FC<{
   const renderIcon = (name: string) => {
     switch (name.toLocaleLowerCase()) {
       case 'tech':
-        return <Cpu weight='duotone' size={size} color={color} />;
+        return <Cpu weight="duotone" size={size} color={color} />;
       case 'sports':
-        return <DribbbleLogo weight='duotone' size={size} color={color} />;
+        return <DribbbleLogo weight="duotone" size={size} color={color} />;
       case 'finance':
-        return <Bank weight='duotone' size={size} color={color} />;
+        return <Bank weight="duotone" size={size} color={color} />;
       case 'health':
-        return <Heartbeat weight='duotone' size={size} color={color} />;
+        return <Heartbeat weight="duotone" size={size} color={color} />;
       case 'agriculture':
-        return <Tree weight='duotone' size={size} color={color} />;
+        return <Tree weight="duotone" size={size} color={color} />;
       case 'travel':
-        return <AirplaneTilt weight='duotone' size={size} color={color} />;
+        return <AirplaneTilt weight="duotone" size={size} color={color} />;
       default:
-        return <Planet weight='duotone' size={size} color={color} />;
+        return <Planet weight="duotone" size={size} color={color} />;
         break;
     }
   };

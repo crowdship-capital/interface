@@ -14,42 +14,42 @@ export interface ILoading {
 export const initialProps: ILoading = {
   isLoading: false,
   loadingText: 'Loading...',
-  loadingAnimation: LoadingAnimation,
+  loadingAnimation: LoadingAnimation
 };
 
 export const Loading: FC<ILoading> = ({
   isLoading,
   loadingText,
-  loadingAnimation,
+  loadingAnimation
 }) => {
   const animation = useMemo(() => LoadingAnimation, []);
 
   return (
     <ModalDialog
       isCentered
-      backgroundColor='transparent'
-      boxShadow='none'
+      backgroundColor="transparent"
+      boxShadow="none"
       closeOnEsc={false}
       closeOnOverlayClick={false}
-      size='full'
+      size="full"
       onClose={null}
-      overlayBgColor='blackAlpha.800'
+      overlayBgColor="blackAlpha.800"
       isOpen={isLoading}
     >
       <Box
-        minH='90vh'
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        flexDirection='column'
+        minH="90vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
       >
-        <Box w='xs' mb={-5}>
+        <Box w="xs" mb={-5}>
           {/* {loadingAnimation && (
             <Lottie animationData={animation} loop={true} autoPlay={true} />
           )} */}
         </Box>
         <Box>
-          <Heading color='white'>{loadingText}</Heading>
+          <Heading color="white">{loadingText}</Heading>
         </Box>
       </Box>
     </ModalDialog>

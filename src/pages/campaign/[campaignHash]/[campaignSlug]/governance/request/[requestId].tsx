@@ -11,7 +11,7 @@ import {
   XCircle,
   Check,
   CheckCircle,
-  SpinnerGap,
+  SpinnerGap
 } from 'phosphor-react';
 import Avatar from 'boring-avatars';
 
@@ -38,24 +38,24 @@ const VoteList: FC<IVoteList> = ({
   voters,
   progress,
   variant,
-  theme,
+  theme
 }) => {
   return (
-    <Card p='0' bg={theme}>
+    <Card p="0" bg={theme}>
       <Box
-        display='flex'
-        alignItems='center'
-        p='5'
-        justifyContent='space-between'
+        display="flex"
+        alignItems="center"
+        p="5"
+        justifyContent="space-between"
       >
-        <Text fontSize='lg' fontWeight='500' mb='2'>
+        <Text fontSize="lg" fontWeight="500" mb="2">
           {title}
         </Text>
         <Box>
-          <Text fontSize='lg' fontWeight='500' mb='2'>
+          <Text fontSize="lg" fontWeight="500" mb="2">
             {voteCount} <Trans>Votes</Trans>
           </Text>
-          <Progress value={progress} variant={variant} size='sm' />
+          <Progress value={progress} variant={variant} size="sm" />
         </Box>
       </Box>
       <AdvancedList items={voters} showFirst={5} />
@@ -69,11 +69,11 @@ const VOTERS = Array.from({ length: 10 }, (_, i) => ({
   logo: (
     <Avatar
       size={40}
-      name='0x0000000000000000000000000000000000000000'
-      variant='marble'
+      name="0x0000000000000000000000000000000000000000"
+      variant="marble"
       colors={AVATAR_COLORS}
     />
-  ),
+  )
 }));
 
 const Request = () => {
@@ -83,81 +83,81 @@ const Request = () => {
     <Box>
       <Box>
         <Button
-          cursor='pointer'
-          alignItems='center'
-          onClick={(e) => {
+          cursor="pointer"
+          alignItems="center"
+          onClick={e => {
             e.preventDefault();
             router.back();
           }}
-          marginBottom='.2rem'
-          padding='0'
-          background='transparent'
+          marginBottom=".2rem"
+          padding="0"
+          background="transparent"
           _active={{
-            background: 'transparent',
+            background: 'transparent'
           }}
           _hover={{
             background: 'transparent',
-            color: 'black',
+            color: 'black'
           }}
-          color='blackAlpha.500'
+          color="blackAlpha.500"
         >
           <CaretLeft size={15} />
-          <Text fontSize='sm' fontWeight='500'>
+          <Text fontSize="sm" fontWeight="500">
             <Trans>Back to requests</Trans>
           </Text>
         </Button>
-        <Box mb='5'>
+        <Box mb="5">
           <RequestHeader
-            id='1'
-            title='Improve quality of kayake gear'
-            approval='pending'
-            endDate='2024-08-24'
-            requestAmount='$100,000'
+            id="1"
+            title="Improve quality of kayake gear"
+            approval="pending"
+            endDate="2024-08-24"
+            requestAmount="$100,000"
             hideProgress={true}
             hideNavigation={true}
             tags={[{ text: 'concept', color: 'blue.300' }]}
           />
         </Box>
-        <Box mb='5'>
-          <Box display='flex' alignItems='center' justifyContent='right'>
-            <HStack spacing='24px' w='lg'>
-              <Button leftIcon={<Check />} size='md' variant='success' w='full'>
+        <Box mb="5">
+          <Box display="flex" alignItems="center" justifyContent="right">
+            <HStack spacing="24px" w="lg">
+              <Button leftIcon={<Check />} size="md" variant="success" w="full">
                 <Trans>For</Trans>
               </Button>
               <Button
                 leftIcon={<X />}
-                size='md'
-                variant='danger-outlined'
-                w='full'
+                size="md"
+                variant="danger-outlined"
+                w="full"
               >
                 <Trans>Against</Trans>
               </Button>
             </HStack>
           </Box>
         </Box>
-        <VStack w='full' alignItems='normal' spacing='20px'>
-          <HStack spacing='20px'>
+        <VStack w="full" alignItems="normal" spacing="20px">
+          <HStack spacing="20px">
             <VoteList
               title={t`For`}
               voteCount={formatNumber(1300000)}
               voters={VOTERS}
               progress={70}
-              variant='success'
-              theme='green.100'
+              variant="success"
+              theme="green.100"
             />
             <VoteList
               title={t`Against`}
               voteCount={formatNumber(300000)}
               voters={VOTERS}
               progress={30}
-              variant='danger'
-              theme='red.100'
+              variant="danger"
+              theme="red.100"
             />
           </HStack>
-          <HStack spacing='20px' alignItems='baseline'>
-            <VStack w='full' spacing='20px'>
+          <HStack spacing="20px" alignItems="baseline">
+            <VStack w="full" spacing="20px">
               <CardSection title={t`Description`}>
-                <Text p='5'>
+                <Text p="5">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -193,7 +193,7 @@ const Request = () => {
                 </Text>
               </CardSection>
               <CardSection title={t`Summary`}>
-                <Text p='5'>
+                <Text p="5">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less
@@ -208,45 +208,45 @@ const Request = () => {
                 </Text>
               </CardSection>
             </VStack>
-            <VStack w='xl' spacing='20px'>
+            <VStack w="xl" spacing="20px">
               <CardSection title={t`Request history`}>
-                <Box p='5'>
+                <Box p="5">
                   <Timeline
                     timelines={[
                       {
                         logo: (
                           <CheckCircle
                             size={25}
-                            color='#48BB78'
-                            weight='bold'
+                            color="#48BB78"
+                            weight="bold"
                           />
                         ),
                         title: t`Created`,
-                        date: moment().fromNow(),
+                        date: moment().fromNow()
                       },
                       {
-                        logo: <SpinnerGap size={25} weight='bold' />,
+                        logo: <SpinnerGap size={25} weight="bold" />,
                         title: t`Active`,
-                        date: moment().fromNow(),
+                        date: moment().fromNow()
                       },
                       {
                         logo: (
-                          <XCircle size={25} color='#F56565' weight='bold' />
+                          <XCircle size={25} color="#F56565" weight="bold" />
                         ),
                         title: t`Failed`,
-                        date: moment().fromNow(),
+                        date: moment().fromNow()
                       },
                       {
                         logo: (
                           <CheckCircle
                             size={25}
-                            color='#48BB78'
-                            weight='bold'
+                            color="#48BB78"
+                            weight="bold"
                           />
                         ),
                         title: t`Success`,
-                        date: moment().fromNow(),
-                      },
+                        date: moment().fromNow()
+                      }
                     ]}
                   />
                 </Box>
@@ -262,12 +262,12 @@ const Request = () => {
                       logo: (
                         <Avatar
                           size={40}
-                          name='0x0000000000000000000000000000000000000000'
-                          variant='marble'
+                          name="0x0000000000000000000000000000000000000000"
+                          variant="marble"
                           colors={AVATAR_COLORS}
                         />
-                      ),
-                    },
+                      )
+                    }
                   ]}
                   showMore={false}
                 />

@@ -8,7 +8,7 @@ import {
   HStack,
   Divider,
   Button,
-  IconButton,
+  IconButton
 } from '@chakra-ui/react';
 
 import { CaretRight, ArrowRight } from 'phosphor-react';
@@ -42,38 +42,38 @@ export const AdvancedList: FC<IAdvancedList> = ({
   withPagination,
   perPage,
   onNext,
-  onPrev,
+  onPrev
 }) => {
   const data = useMemo(() => items, [items]);
 
   return (
     <>
-      <UnorderedList listStyleType='none' p='0' m='0'>
+      <UnorderedList listStyleType="none" p="0" m="0">
         {data.map(({ title, subtitle, logo }, idx) => {
           return (
             <Box key={idx}>
               {showDivider ? <Divider /> : null}
               <ListItem
-                p='3'
-                cursor='pointer'
+                p="3"
+                cursor="pointer"
                 _hover={{
-                  bg: 'blackAlpha.50',
+                  bg: 'blackAlpha.50'
                 }}
               >
                 <Box
-                  display='flex'
-                  alignItems='center'
-                  justifyContent='space-between'
-                  mx='5'
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  mx="5"
                 >
-                  <Box display='flex' alignItems='center'>
-                    {logo && <Box mr='3'>{logo}</Box>}
+                  <Box display="flex" alignItems="center">
+                    {logo && <Box mr="3">{logo}</Box>}
                     <Box>
-                      <Text fontWeight='500' noOfLines={1} isTruncated>
+                      <Text fontWeight="500" noOfLines={1} isTruncated>
                         {title}
                       </Text>
                       {title && (
-                        <Text fontSize='sm' color='blackAlpha.700'>
+                        <Text fontSize="sm" color="blackAlpha.700">
                           {subtitle}
                         </Text>
                       )}
@@ -81,8 +81,8 @@ export const AdvancedList: FC<IAdvancedList> = ({
                   </Box>
                   {showNavigation && (
                     <IconButton
-                      variant='ghost'
-                      aria-label='view'
+                      variant="ghost"
+                      aria-label="view"
                       icon={<CaretRight />}
                     />
                   )}
@@ -93,14 +93,14 @@ export const AdvancedList: FC<IAdvancedList> = ({
         })}
       </UnorderedList>
       {showMore && !withPagination && (
-        <HStack justifyContent='flex-end' p='3' mx='5'>
-          <Button variant='ghost' fontWeight='500' rightIcon={<ArrowRight />}>
+        <HStack justifyContent="flex-end" p="3" mx="5">
+          <Button variant="ghost" fontWeight="500" rightIcon={<ArrowRight />}>
             <Trans>View all</Trans>
           </Button>
         </HStack>
       )}
       {withPagination && (
-        <Box p='5' mx='5'>
+        <Box p="5" mx="5">
           <Pagination onNext={onNext} onPrev={onPrev} />
         </Box>
       )}
@@ -117,5 +117,5 @@ AdvancedList.defaultProps = {
   withPagination: false,
   perPage: 10,
   onNext: () => {},
-  onPrev: () => {},
+  onPrev: () => {}
 };

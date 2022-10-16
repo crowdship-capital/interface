@@ -19,16 +19,16 @@ const TRANSACTIONS = Array.from({ length: 10 }, (_, i) => ({
   logo: (
     <Avatar
       size={40}
-      name='0x0000000000000000000000000000000000000000'
-      variant='marble'
+      name="0x0000000000000000000000000000000000000000"
+      variant="marble"
       colors={AVATAR_COLORS}
     />
-  ),
+  )
 }));
 
 const Transactions = () => {
   return (
-    <CardSection title='Transactions'>
+    <CardSection title="Transactions">
       <AdvancedList items={TRANSACTIONS} perPage={10} showMore />
     </CardSection>
   );

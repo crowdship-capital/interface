@@ -21,63 +21,63 @@ export const initialProps: IProfileOverviewModal = {
   profileImage: '',
   wallet: {} as WalletState,
   onClose: () => {},
-  isOpen: false,
+  isOpen: false
 };
 
 const ProfileOverviewModal: FC<IProfileOverviewModal> = ({
   isOpen,
   profileImage,
   wallet,
-  onClose,
+  onClose
 }): ReactElement => {
   return (
     <>
       <ModalDialog
         isCentered={true}
-        backgroundColor='white'
+        backgroundColor="white"
         closeOnEsc
         closeOnOverlayClick
         blockScrollOnMount={true}
-        size='md'
+        size="md"
         onClose={onClose}
-        overlayBgColor='blackAlpha.600'
+        overlayBgColor="blackAlpha.600"
         isOpen={isOpen}
         showCloseButton
       >
-        <Center flexDirection='column' p='10'>
-          <Center display='flex' flexDirection='column' justifyContent='center'>
+        <Center flexDirection="column" p="10">
+          <Center display="flex" flexDirection="column" justifyContent="center">
             <Box>{profileImage}</Box>
-            <Text color='blackAlpha.600' fontSize='sm' mt='5'>
+            <Text color="blackAlpha.600" fontSize="sm" mt="5">
               Connected with {wallet?.label} wallet
             </Text>
           </Center>
           <Box>
-            <Text fontFamily='DM mono' fontWeight='500' fontSize='36px'>
+            <Text fontFamily="DM mono" fontWeight="500" fontSize="36px">
               {generateSlicedAddress(wallet?.accounts?.[0]?.address)}
             </Text>
           </Box>
           <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='space-between'
-            mt='2'
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            mt="2"
           >
             <Button
-              size='sm'
-              variant='ghost'
-              color='blackAlpha.600'
-              fontWeight='500'
-              m='1'
+              size="sm"
+              variant="ghost"
+              color="blackAlpha.600"
+              fontWeight="500"
+              m="1"
               leftIcon={<CopySimple width={20} height={20} />}
             >
               Copy Address
             </Button>
             <Button
-              m='1'
-              variant='ghost'
-              color='blackAlpha.600'
-              fontWeight='500'
-              size='sm'
+              m="1"
+              variant="ghost"
+              color="blackAlpha.600"
+              fontWeight="500"
+              size="sm"
               leftIcon={<ArrowSquareOut width={20} height={20} />}
             >
               View Transactions

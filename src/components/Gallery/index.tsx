@@ -12,8 +12,8 @@ export const Gallery = ({ slides }) => {
   const thumbsRef = useRef<Splide>();
 
   const renderSlides = (): ReactNode[] => {
-    return slides.map((slide) => (
-      <li className='splide__slide' key={slide.src}>
+    return slides.map(slide => (
+      <li className="splide__slide" key={slide.src}>
         <img src={slide.src} alt={slide.src} />
       </li>
     ));
@@ -25,7 +25,7 @@ export const Gallery = ({ slides }) => {
     arrows: false,
     cover: true,
     fixedHeight: '400px',
-    width: '100%',
+    width: '100%'
   };
 
   const thumbsOptions: Options = {
@@ -40,14 +40,14 @@ export const Gallery = ({ slides }) => {
     arrows: true,
     dragMinThreshold: {
       mouse: 4,
-      touch: 10,
+      touch: 10
     },
     breakpoints: {
       640: {
         fixedWidth: 66,
-        fixedHeight: 38,
-      },
-    },
+        fixedHeight: 38
+      }
+    }
   };
 
   useEffect(() => {
@@ -57,12 +57,12 @@ export const Gallery = ({ slides }) => {
   }, []);
 
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
       <Box>
         <Splide
           options={mainOptions}
           ref={mainRef}
-          aria-labelledby='thumbnail-slider-example'
+          aria-labelledby="thumbnail-slider-example"
         >
           {renderSlides()}
         </Splide>
@@ -72,7 +72,7 @@ export const Gallery = ({ slides }) => {
         <Splide
           options={thumbsOptions}
           ref={thumbsRef}
-          aria-label='The carousel with thumbnails. Selecting a thumbnail will change the main carousel'
+          aria-label="The carousel with thumbnails. Selecting a thumbnail will change the main carousel"
         >
           {renderSlides()}
         </Splide>

@@ -41,7 +41,7 @@ import {
   RangeSlider,
   RangeSliderTrack,
   RangeSliderFilledTrack,
-  RangeSliderThumb,
+  RangeSliderThumb
 } from '@chakra-ui/react';
 import { isAddress } from '@ethersproject/address';
 
@@ -69,12 +69,12 @@ const schema = yup
     governance: yup.string().required('Required'),
     campaignConfig: yup.array().of(
       yup.object().shape({
-        value: yup.lazy((val) =>
+        value: yup.lazy(val =>
           Array.isArray(val) ? yup.array().of(yup.string()) : yup.string()
         ),
-        key: yup.string(),
+        key: yup.string()
       })
-    ),
+    )
   })
   .required();
 
@@ -82,76 +82,76 @@ const campaignConfig = [
   {
     title: 'Campaign Contract Address',
     description: 'Lorem Ipsum',
-    suffix: null,
+    suffix: null
   },
   {
     title: 'Request Contract Address',
     description: 'Lorem Ipsum',
-    suffix: null,
+    suffix: null
   },
   {
     title: 'Vote Contract Address',
     description: 'Lorem Ipsum',
-    suffix: null,
+    suffix: null
   },
   {
     title: 'Reward Contract Address',
     description: 'Lorem Ipsum',
-    suffix: null,
+    suffix: null
   },
   {
     title: 'Default commission',
     description: 'Lorem Ipsum',
-    suffix: '%',
+    suffix: '%'
   },
   {
     title: 'Deadline extension threshold',
     description: 'Lorem Ipsum',
-    suffix: null,
+    suffix: null
   },
   {
     title: 'Contribution range',
     description: 'Lorem Ipsum',
-    suffix: '$',
+    suffix: '$'
   },
   {
     title: 'Request amount range',
     description: 'Lorem Ipsum',
-    suffix: '$',
+    suffix: '$'
   },
   {
     title: 'Campaign target range',
     description: 'Lorem Ipsum',
-    suffix: '$',
+    suffix: '$'
   },
   {
     title: 'Deadline extension range',
     description: 'Lorem Ipsum',
-    suffix: 'secs',
+    suffix: 'secs'
   },
   {
     title: 'Request duration range',
     description: 'Lorem Ipsum',
-    suffix: 'secs',
+    suffix: 'secs'
   },
   {
     title: 'Review threshold',
     description: 'Lorem Ipsum',
-    suffix: '%',
+    suffix: '%'
   },
   {
     title: 'Request finalization threshold',
     description: 'Lorem Ipsum',
-    suffix: '%',
+    suffix: '%'
   },
   {
     title: 'Report threshold',
     description: 'Lorem Ipsum',
-    suffix: '%',
-  },
+    suffix: '%'
+  }
 ];
 
-const Home: NextPage = (props) => {
+const Home: NextPage = props => {
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const logout = useLogout();
 
@@ -173,60 +173,60 @@ const Home: NextPage = (props) => {
   const campaignConfigValues = [
     {
       key: 'campaignContractAddress',
-      value: campaignAddress,
+      value: campaignAddress
     },
     {
       key: 'requestContractAddress',
-      value: campaignRequestAddress,
+      value: campaignRequestAddress
     },
     {
       key: 'voteContractAddress',
-      value: campaignVoteAddress,
+      value: campaignVoteAddress
     },
     {
       key: 'rewardContractAddress',
-      value: campaignRewardAddress,
+      value: campaignRewardAddress
     },
     {
       key: 'defaultCommission',
-      value: 2,
+      value: 2
     },
     {
       key: 'deadlineStrikesAllowed',
-      value: 3,
+      value: 3
     },
     {
       key: 'contributionAllowed',
-      value: [1, 100000],
+      value: [1, 100000]
     },
     {
       key: 'requestAmountAllowed',
-      value: [1000, 50000],
+      value: [1000, 50000]
     },
     {
       key: 'campaignTarget',
-      value: [5000, 1000000],
+      value: [5000, 1000000]
     },
     {
       key: 'deadlineExtension',
-      value: [1, 14],
+      value: [1, 14]
     },
     {
       key: 'requestDuration',
-      value: [1, 14],
+      value: [1, 14]
     },
     {
       key: 'reviewThresholdMark',
-      value: 80,
+      value: 80
     },
     {
       key: 'requestFinalizationThreshold',
-      value: 51,
+      value: 51
     },
     {
       key: 'reportThresholdMark',
-      value: 51,
-    },
+      value: 51
+    }
   ];
 
   const timeFields = ['deadlineExtension', 'requestDuration'];
@@ -241,12 +241,12 @@ const Home: NextPage = (props) => {
     setValue,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors }
   } = useForm<formData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      campaignConfig: campaignConfigValues,
-    },
+      campaignConfig: campaignConfigValues
+    }
   });
 
   useEffect(() => {
@@ -256,7 +256,7 @@ const Home: NextPage = (props) => {
   const { fields } = useFieldArray({
     control,
     name: 'campaignConfig',
-    keyName: 'key',
+    keyName: 'key'
   });
 
   const watchAllFields = watch();
@@ -264,7 +264,7 @@ const Home: NextPage = (props) => {
   const isSubmitting = (isLoading: boolean) => {
     setLoading({
       isLoading,
-      loadingText: 'Processing...',
+      loadingText: 'Processing...'
     });
   };
 
@@ -285,7 +285,7 @@ const Home: NextPage = (props) => {
             }
 
             if (Array.isArray(value)) {
-              value.map((v) => config.push(Number(v)));
+              value.map(v => config.push(Number(v)));
             } else {
               config.push(Number(value));
             }
@@ -303,12 +303,12 @@ const Home: NextPage = (props) => {
             config
           )
           .then(async () => {
-            factory.on('CampaignFactoryDeployed', (campaignFactory) => {
+            factory.on('CampaignFactoryDeployed', campaignFactory => {
               isSubmitting(false);
               Router.push(`/?myCrowdship=${campaignFactory}`);
             });
           })
-          .catch((err) => {
+          .catch(err => {
             setTransactionError(err.message);
             isSubmitting(false);
           });
@@ -340,51 +340,51 @@ const Home: NextPage = (props) => {
       <Head>
         <title>Crowdship - Create Demo</title>
         <meta
-          name='description'
-          content='Create and test your crowdship demo'
+          name="description"
+          content="Create and test your crowdship demo"
         />
       </Head>
-      <Flex color='white' minH={'100vh'}>
+      <Flex color="white" minH={'100vh'}>
         <Box
-          w='400px'
+          w="400px"
           display={{ base: 'none', md: 'none', lg: 'block' }}
-          bg='yellow.500'
-          position='relative'
-          overflow='hidden'
-          backgroundImage='url(./images/map-light.svg)'
-          backgroundRepeat='no-repeat'
-          backgroundSize='1000px'
-          backgroundPosition='-290px 80px'
+          bg="yellow.500"
+          position="relative"
+          overflow="hidden"
+          backgroundImage="url(./images/map-light.svg)"
+          backgroundRepeat="no-repeat"
+          backgroundSize="1000px"
+          backgroundPosition="-290px 80px"
         ></Box>
         <Box
-          flex='1'
-          bg='yellow.100'
-          borderRightWidth='10px'
-          borderRightColor='yellow.500'
+          flex="1"
+          bg="yellow.100"
+          borderRightWidth="10px"
+          borderRightColor="yellow.500"
         >
           <Center>
             <Stack spacing={4} w={'full'} maxW={'xl'} p={6} my={52}>
               <Heading
                 lineHeight={1.1}
                 fontSize={{ base: '2xl', md: '3xl' }}
-                color='black.500'
+                color="black.500"
               >
                 Crowdship
               </Heading>
-              <Text color='gray.500'>
+              <Text color="gray.500">
                 Generate your crowdship experience invite friends to
                 participate, this demo runs on rinkeby.
               </Text>
               <Spacer />
               <form onSubmit={handleSubmit(createDemo)}>
                 {transactionError && (
-                  <Alert status='error' variant='solid' bg='red.500' mb={3}>
+                  <Alert status="error" variant="solid" bg="red.500" mb={3}>
                     <AlertIcon />
                     <AlertDescription>{transactionError}</AlertDescription>
                     <CloseButton
-                      position='absolute'
-                      right='8px'
-                      top='8px'
+                      position="absolute"
+                      right="8px"
+                      top="8px"
                       _focus={{ boxShadow: 'none' }}
                       onClick={() => setTransactionError('')}
                     />
@@ -394,16 +394,16 @@ const Home: NextPage = (props) => {
                   isInvalid={!!errors.governance?.message?.length}
                   isRequired
                 >
-                  <FormLabel htmlFor='governance' color='black'>
+                  <FormLabel htmlFor="governance" color="black">
                     Governance Address
                   </FormLabel>
                   <Input
                     {...register('governance')}
-                    id='governance'
-                    variant='outlineAlt'
-                    size='lg'
+                    id="governance"
+                    variant="outlineAlt"
+                    size="lg"
                     _placeholder={{ color: 'gray.500' }}
-                    placeholder='0x0000000000000000000000000000000000000000'
+                    placeholder="0x0000000000000000000000000000000000000000"
                   />
                   <FormErrorMessage>
                     {errors.governance?.message}
@@ -413,20 +413,20 @@ const Home: NextPage = (props) => {
                   <Drawer
                     isOpen={isOpen}
                     onClose={onClose}
-                    placement='left'
-                    size='lg'
+                    placement="left"
+                    size="lg"
                   >
                     <DrawerOverlay />
                     <DrawerContent>
-                      <DrawerCloseButton top='16px' />
-                      <DrawerHeader fontFamily='DM mono'>
+                      <DrawerCloseButton top="16px" />
+                      <DrawerHeader fontFamily="DM mono">
                         Advanced Settings
                       </DrawerHeader>
                       <Divider />
                       <DrawerBody>
                         {fields.map((field, idx) => {
-                          const renderConfigField = (index) => (
-                            <InputGroup size='md'>
+                          const renderConfigField = index => (
+                            <InputGroup size="md">
                               <NumberInput
                                 value={
                                   !timeFields.includes(field.key)
@@ -435,14 +435,14 @@ const Home: NextPage = (props) => {
                                           .value[index],
                                         {
                                           symbol: '',
-                                          precision: 0,
+                                          precision: 0
                                         }
                                       )
                                     : watchAllFields.campaignConfig[idx].value[
                                         index
                                       ]
                                 }
-                                onChange={(value) => {
+                                onChange={value => {
                                   let currentValues =
                                     watchAllFields.campaignConfig[idx].value;
 
@@ -453,17 +453,17 @@ const Home: NextPage = (props) => {
                                     currentValues
                                   );
                                 }}
-                                variant='outlineAlt'
-                                size='lg'
+                                variant="outlineAlt"
+                                size="lg"
                               >
-                                <NumberInputField textAlign='center' />
+                                <NumberInputField textAlign="center" />
                               </NumberInput>
                               {timeFields.includes(field.key) ? (
-                                <InputRightElement h='full'>
-                                  <Text mr='6'>days</Text>
+                                <InputRightElement h="full">
+                                  <Text mr="6">days</Text>
                                 </InputRightElement>
                               ) : (
-                                <InputLeftElement h='full'>
+                                <InputLeftElement h="full">
                                   <Text>$</Text>
                                 </InputLeftElement>
                               )}
@@ -476,7 +476,7 @@ const Home: NextPage = (props) => {
                                 <FormControl key={idx} py={2} mb={2}>
                                   <FormLabel
                                     htmlFor={`campaignConfig.${idx}`}
-                                    color='black'
+                                    color="black"
                                   >
                                     {campaignConfig[idx].title}
                                   </FormLabel>
@@ -484,12 +484,12 @@ const Home: NextPage = (props) => {
                                     key={field.key}
                                     id={`campaignConfig.${idx}`}
                                     {...register(`campaignConfig.${idx}.value`)}
-                                    variant='outlineAlt'
-                                    size='lg'
+                                    variant="outlineAlt"
+                                    size="lg"
                                     _placeholder={{
-                                      color: 'gray.500',
+                                      color: 'gray.500'
                                     }}
-                                    placeholder='0x0000000000000000000000000000000000000000'
+                                    placeholder="0x0000000000000000000000000000000000000000"
                                   />
                                 </FormControl>
                               );
@@ -498,19 +498,19 @@ const Home: NextPage = (props) => {
                               return (
                                 <Box key={idx} py={2} mb={2}>
                                   <Text
-                                    textTransform='capitalize'
-                                    fontWeight='500'
-                                    fontSize='1rem'
-                                    pb='1'
+                                    textTransform="capitalize"
+                                    fontWeight="500"
+                                    fontSize="1rem"
+                                    pb="1"
                                   >
                                     {campaignConfig[idx].title}
                                   </Text>
                                   <Box
-                                    display='flex'
-                                    justifyContent='space-between'
+                                    display="flex"
+                                    justifyContent="space-between"
                                   >
                                     <Slider
-                                      flex='1'
+                                      flex="1"
                                       focusThumbOnChange={false}
                                       min={1}
                                       max={100}
@@ -518,42 +518,42 @@ const Home: NextPage = (props) => {
                                         watchAllFields.campaignConfig[idx]
                                           .value as number
                                       }
-                                      onChange={(e) => {
+                                      onChange={e => {
                                         setValue(
                                           `campaignConfig.${idx}.value`,
                                           e
                                         );
                                       }}
                                     >
-                                      <SliderTrack bg='green.100'>
-                                        <SliderFilledTrack bg='green.400' />
+                                      <SliderTrack bg="green.100">
+                                        <SliderFilledTrack bg="green.400" />
                                       </SliderTrack>
                                       <SliderThumb boxSize={7}>
                                         <Lightning
                                           size={16}
-                                          weight='duotone'
-                                          color='#48BB78'
+                                          weight="duotone"
+                                          color="#48BB78"
                                         />
                                       </SliderThumb>
                                     </Slider>
-                                    <InputGroup size='md' w='150px' ml='6'>
+                                    <InputGroup size="md" w="150px" ml="6">
                                       <NumberInput
                                         value={`${watchAllFields.campaignConfig[idx].value}`}
-                                        variant='outlineAlt'
-                                        size='lg'
-                                        onChange={(val) => {
+                                        variant="outlineAlt"
+                                        size="lg"
+                                        onChange={val => {
                                           setValue(
                                             `campaignConfig.${idx}.value`,
                                             val
                                           );
                                         }}
                                       >
-                                        <NumberInputField textAlign='center' />
+                                        <NumberInputField textAlign="center" />
                                       </NumberInput>
                                       {field.key !==
                                       'deadlineStrikesAllowed' ? (
-                                        <InputRightElement h='full'>
-                                          <Text fontWeight='500'>%</Text>
+                                        <InputRightElement h="full">
+                                          <Text fontWeight="500">%</Text>
                                         </InputRightElement>
                                       ) : null}
                                     </InputGroup>
@@ -565,14 +565,14 @@ const Home: NextPage = (props) => {
                               return (
                                 <Box key={idx} py={2} mb={2}>
                                   <Text
-                                    textTransform='capitalize'
-                                    fontWeight='500'
-                                    fontSize='1rem'
-                                    pb='2'
+                                    textTransform="capitalize"
+                                    fontWeight="500"
+                                    fontSize="1rem"
+                                    pb="2"
                                   >
                                     {campaignConfig[idx].title}
                                   </Text>
-                                  <Box display='flex'>
+                                  <Box display="flex">
                                     {renderConfigField(0)}
                                     <RangeSlider
                                       aria-label={['min', 'max']}
@@ -587,28 +587,28 @@ const Home: NextPage = (props) => {
                                       }
                                       min={1}
                                       mx={6}
-                                      onChange={(e) => {
+                                      onChange={e => {
                                         setValue(
                                           `campaignConfig.${idx}.value`,
                                           e
                                         );
                                       }}
                                     >
-                                      <RangeSliderTrack bg='green.100'>
-                                        <RangeSliderFilledTrack bg='green.400' />
+                                      <RangeSliderTrack bg="green.100">
+                                        <RangeSliderFilledTrack bg="green.400" />
                                       </RangeSliderTrack>
                                       <RangeSliderThumb boxSize={7} index={0}>
                                         <Lightning
                                           size={16}
-                                          weight='duotone'
-                                          color='#48BB78'
+                                          weight="duotone"
+                                          color="#48BB78"
                                         />
                                       </RangeSliderThumb>
                                       <RangeSliderThumb boxSize={7} index={1}>
                                         <Lightning
                                           size={16}
-                                          weight='duotone'
-                                          color='#48BB78'
+                                          weight="duotone"
+                                          color="#48BB78"
                                         />
                                       </RangeSliderThumb>
                                     </RangeSlider>
@@ -625,9 +625,9 @@ const Home: NextPage = (props) => {
                       <DrawerFooter>
                         <Button
                           onClick={() => reset()}
-                          variant='primary'
-                          w='full'
-                          size='lg'
+                          variant="primary"
+                          w="full"
+                          size="lg"
                           leftIcon={<ArrowCounterClockwise />}
                         >
                           Reset Values
@@ -636,27 +636,27 @@ const Home: NextPage = (props) => {
                     </DrawerContent>
                   </Drawer>
                   <Box
-                    display='flex'
-                    justifyContent='flex-end'
+                    display="flex"
+                    justifyContent="flex-end"
                     mt={1}
                     onClick={onOpen}
                   >
                     <Box
-                      display='flex'
-                      alignItems='center'
-                      cursor='pointer'
-                      padding='5px 10px'
+                      display="flex"
+                      alignItems="center"
+                      cursor="pointer"
+                      padding="5px 10px"
                       _active={{
                         background: 'rgba(0, 0, 0, 0.06)',
-                        borderRadius: 'sm',
+                        borderRadius: 'sm'
                       }}
                       _hover={{
                         background: 'rgba(0, 0, 0, 0.06)',
-                        borderRadius: 'sm',
+                        borderRadius: 'sm'
                       }}
                     >
-                      <InfoOutlineIcon color='black' w={3} h={3} mr={1} />
-                      <Text fontSize='sm' color='black'>
+                      <InfoOutlineIcon color="black" w={3} h={3} mr={1} />
+                      <Text fontSize="sm" color="black">
                         Advanced
                       </Text>
                     </Box>
@@ -670,7 +670,7 @@ const Home: NextPage = (props) => {
                     variant={authenticated ? 'primary' : 'primaryAlt'}
                     isLoading={authenticating}
                     loadingText={!isLoading ? 'Connecting...' : 'Deploying...'}
-                    size='lg'
+                    size="lg"
                     leftIcon={
                       authenticated ? (
                         <ChevronRightIcon />
@@ -684,10 +684,10 @@ const Home: NextPage = (props) => {
                   <Center>
                     {authenticated ? (
                       <Text
-                        fontSize='sm'
-                        color='blue.500'
-                        textDecoration='underline'
-                        cursor='pointer'
+                        fontSize="sm"
+                        color="blue.500"
+                        textDecoration="underline"
+                        cursor="pointer"
                         onClick={logout}
                       >
                         Disconnect Wallet

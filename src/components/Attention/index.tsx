@@ -4,7 +4,7 @@ import {
   AlertIcon,
   AlertProps,
   AlertTitle,
-  AlertDescription,
+  AlertDescription
 } from '@chakra-ui/react';
 
 export interface IAttention extends AlertProps {
@@ -17,7 +17,7 @@ export const Attention: FC<IAttention> = ({
   status,
   title,
   description,
-  open,
+  open
 }): ReactElement => {
   return (
     <Alert

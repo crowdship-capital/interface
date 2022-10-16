@@ -7,7 +7,7 @@ import CampaignLayout from '@/layouts/Campaign';
 const Details = () => {
   return (
     <Box>
-      <Heading fontSize='xl' fontWeight='500' mb='5'>
+      <Heading fontSize="xl" fontWeight="500" mb="5">
         <Trans>About the project</Trans>
       </Heading>
       <Box>
@@ -22,7 +22,7 @@ const Details = () => {
           infancy. Various versions have evolved over the years, sometimes by
           accident, sometimes on purpose (injected humour and the like).
         </Text>
-        <Image src='/images/long-story.jpg' my='5' />
+        <Image src="/images/long-story.jpg" my="5" />
         <Text>
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
@@ -36,7 +36,7 @@ const Details = () => {
           very popular during the Renaissance. The first line of Lorem Ipsum,
           "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
         </Text>
-        <Image src='/images/long-story.jpg' my='5' />
+        <Image src="/images/long-story.jpg" my="5" />
         <Text>
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
