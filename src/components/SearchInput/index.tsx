@@ -10,44 +10,44 @@ export interface ISearchInput {
 export const defaultProps = {
   placeholder: 'Search',
   width: 'full',
-  onClick: () => {},
+  onClick: () => {}
 };
 
 export const SearchInput: FC<ISearchInput> = ({
   onClick,
   width,
-  placeholder,
+  placeholder
 }) => {
   return (
     <Button
       w={width}
-      borderRadius='3xl'
-      variant='primary'
-      background='rgba(0, 0, 0, 0.06)'
+      borderRadius="3xl"
+      variant="primary"
+      background="rgba(0, 0, 0, 0.06)"
       _hover={{
-        backgroundColor: 'rgba(0, 0, 0, 0.06)',
+        backgroundColor: 'rgba(0, 0, 0, 0.06)'
       }}
-      size='lg'
-      fontSize='md'
+      size="lg"
+      fontSize="md"
       onClick={onClick}
     >
       <Box
-        w='full'
-        display='flex'
-        alignItems='center'
-        justifyContent='space-between'
+        w="full"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
       >
-        <Text color='blackAlpha.400' fontWeight='400'>
+        <Text color="blackAlpha.400" fontWeight="400">
           {placeholder}
         </Text>
         <Kbd
-          display='flex'
-          alignItems='center'
-          color='blackAlpha.700'
-          backgroundColor='yellow.200'
-          borderColor='#E3DAAD'
+          display="flex"
+          alignItems="center"
+          color="blackAlpha.700"
+          backgroundColor="yellow.200"
+          borderColor="#E3DAAD"
         >
-          <Text as='span' fontSize='18px' mr='2px'>
+          <Text as="span" fontSize="18px" mr="2px">
             ⌘
           </Text>
           K

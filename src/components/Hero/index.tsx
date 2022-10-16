@@ -8,7 +8,7 @@ import {
   Heading,
   Flex,
   Button,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import { CaretLeft } from 'phosphor-react';
 
@@ -41,13 +41,13 @@ export const Hero = ({
   showBackButton,
   backButtonText,
   media,
-  style,
+  style
 }: HeroProps) => {
   const router = useRouter();
 
   return (
     <Flex
-      w='full'
+      w="full"
       h={height}
       backgroundColor={bgColor}
       backgroundImage={`url(${bgImage})`}
@@ -56,44 +56,44 @@ export const Hero = ({
       backgroundRepeat={bgRepeat}
       style={style}
     >
-      <Container maxW='1240px'>
-        <Box display='flex' flexDirection='column' justifyContent={'center'}>
-          <Box mt='7rem'>
+      <Container maxW="1240px">
+        <Box display="flex" flexDirection="column" justifyContent={'center'}>
+          <Box mt="7rem">
             {showBackButton ? (
               <Button
-                cursor='pointer'
-                alignItems='center'
-                onClick={(e) => {
+                cursor="pointer"
+                alignItems="center"
+                onClick={e => {
                   e.preventDefault();
                   router.back();
                 }}
-                marginBottom='.2rem'
-                padding='0'
-                background='transparent'
+                marginBottom=".2rem"
+                padding="0"
+                background="transparent"
                 _active={{
-                  background: 'transparent',
+                  background: 'transparent'
                 }}
                 _hover={{
                   background: 'transparent',
-                  color: 'black',
+                  color: 'black'
                 }}
-                color='blackAlpha.500'
+                color="blackAlpha.500"
               >
                 <CaretLeft size={15} />
-                <Text fontSize='sm' fontWeight='500'>
+                <Text fontSize="sm" fontWeight="500">
                   {backButtonText}
                 </Text>
               </Button>
             ) : null}
-            <Box display='flex'>
+            <Box display="flex">
               {media ? (
-                <Box w='full' overflow='hidden' margin='0px 40px 0px 0px'>
+                <Box w="full" overflow="hidden" margin="0px 40px 0px 0px">
                   {media}
                 </Box>
               ) : null}
-              <Box w='md'>
+              <Box w="md">
                 <Box>{header}</Box>
-                <Box mb='3'>{body}</Box>
+                <Box mb="3">{body}</Box>
                 <Stack>{actions}</Stack>
               </Box>
             </Box>

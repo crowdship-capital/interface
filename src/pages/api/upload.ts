@@ -5,8 +5,8 @@ import fs from 'fs';
 export const config = {
   api: {
     bodyParser: false,
-    externalResolver: true,
-  },
+    externalResolver: true
+  }
 };
 
 const post = async (req, res) => {
@@ -29,7 +29,7 @@ const post = async (req, res) => {
 
     const ipfsResonse = await ipfs.add({
       path: file.campaignPreview.name,
-      content: data,
+      content: data
     });
 
     if (!ipfsResonse) return res.status(500).send('internal server error');

@@ -3,7 +3,7 @@ import { Box, Button } from '@chakra-ui/react';
 
 const Campaigns: NextPage = () => {
   return (
-    <Box paddingTop='96px'>
+    <Box paddingTop="96px">
       <Button>Campaigns</Button>
     </Box>
   );

@@ -32,7 +32,7 @@ type ComponentWithPageLayout = AppProps & {
 
 const MyApp = ({
   Component,
-  pageProps,
+  pageProps
 }: ComponentWithPageLayout): JSX.Element => {
   const { locale } = useRouter();
 
@@ -43,16 +43,16 @@ const MyApp = ({
   return (
     <>
       <Script
-        strategy='beforeInteractive'
-        src='/scripts/gun/gun.min.js'
+        strategy="beforeInteractive"
+        src="/scripts/gun/gun.min.js"
       ></Script>
       <Script
-        strategy='beforeInteractive'
-        src='/scripts/gun/axe.min.js'
+        strategy="beforeInteractive"
+        src="/scripts/gun/axe.min.js"
       ></Script>
       <Script
-        strategy='beforeInteractive'
-        src='/scripts/gun/sea.min.js'
+        strategy="beforeInteractive"
+        src="/scripts/gun/sea.min.js"
       ></Script>
       <I18nProvider i18n={i18n}>
         <ChakraProvider theme={theme}>

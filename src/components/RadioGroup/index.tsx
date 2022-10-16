@@ -4,7 +4,7 @@ import {
   useRadioGroup,
   FormControl,
   FormLabel,
-  FormErrorMessage,
+  FormErrorMessage
 } from '@chakra-ui/react';
 import { RadioCard } from '@/components/RadioCard';
 import { useController, Control, FieldValues } from 'react-hook-form';
@@ -26,20 +26,20 @@ export const RadioGroup: FC<{
   isRequired,
   columns,
   spacing,
-  style,
+  style
 }) => {
   const {
     field,
-    formState: { errors },
+    formState: { errors }
   } = useController({
     control,
-    name,
+    name
   });
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name,
     onChange: field.onChange,
-    value: field.value,
+    value: field.value
   });
 
   const group = getRootProps();
@@ -60,11 +60,11 @@ export const RadioGroup: FC<{
       <FormControl isInvalid={!!errors[name]} isRequired={isRequired}>
         <FormLabel
           htmlFor={name}
-          color='black'
-          fontFamily='DM mono'
-          fontSize='24px'
-          mb='40px'
-          lineHeight='120%'
+          color="black"
+          fontFamily="DM mono"
+          fontSize="24px"
+          mb="40px"
+          lineHeight="120%"
         >
           {label()}
         </FormLabel>

@@ -25,14 +25,14 @@ export const RewardCard: FC<IRewardCard> = ({
   deliveryDate,
   shippingException,
   stock,
-  rewardeeCount,
+  rewardeeCount
 }) => {
   const renderInclusions = (): ReactNode[] => {
-    return perks.map((perk) => <li key={perk}>{perk}</li>);
+    return perks.map(perk => <li key={perk}>{perk}</li>);
   };
 
   return (
-    <Box borderWidth='1px' borderColor='blackAlpha.300' p='5'>
+    <Box borderWidth="1px" borderColor="blackAlpha.300" p="5">
       <Heading>{title}</Heading>
       <Text>{description}</Text>
       <Badge>{cost}</Badge>
@@ -50,7 +50,7 @@ export const RewardCard: FC<IRewardCard> = ({
 
 export const RewardList: FC<{ rewards: IRewardCard[] }> = ({ rewards }) => {
   if (!rewards.length)
-    return <Empty title='No Rewards' icon={<Gift size={100} />} />;
+    return <Empty title="No Rewards" icon={<Gift size={100} />} />;
 
   return (
     <Box>

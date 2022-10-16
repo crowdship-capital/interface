@@ -18,7 +18,7 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-  CloseButton,
+  CloseButton
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -49,14 +49,14 @@ import nanoid from '@/utils/nanoid';
 const Content = ({
   index,
   activeStep,
-  children,
+  children
 }: {
   index: number;
   activeStep: number;
   children: any;
 }) => (
   <Center
-    position='relative'
+    position="relative"
     _after={
       index <= activeStep
         ? {
@@ -65,7 +65,7 @@ const Content = ({
             bottom: '0',
             width: '100%',
             height: '8px',
-            backgroundColor: '#e9ebed',
+            backgroundColor: '#e9ebed'
           }
         : {}
     }
@@ -86,39 +86,39 @@ const schema = yup
     campaignName: yup.string().trim().required('Required'),
     campaignDescription: yup.string().trim(),
     campaignCategory: yup.string().required('Required'),
-    campaignListing: yup.string().required('Required'),
+    campaignListing: yup.string().required('Required')
   })
   .required();
 
 const categories = [
   {
     title: 'tech',
-    id: '1',
+    id: '1'
   },
   {
     title: 'sports',
-    id: '2',
+    id: '2'
   },
   {
     title: 'finance',
-    id: '3',
+    id: '3'
   },
   {
     title: 'health',
-    id: '4',
+    id: '4'
   },
   {
     title: 'agriculture',
-    id: '5',
+    id: '5'
   },
   {
     title: 'travel',
-    id: '6',
+    id: '6'
   },
   {
     title: 'others',
-    id: '0',
-  },
+    id: '0'
+  }
 ];
 
 const Launch: NextPage = () => {
@@ -128,7 +128,7 @@ const Launch: NextPage = () => {
   const [campaignForm, setCampaignForm] = useState({
     isLoading: false,
     launchButtonText: 'Launch',
-    loadingText: null,
+    loadingText: null
   });
   const [transactionError, setTransactionError] = useState('');
 
@@ -150,32 +150,32 @@ const Launch: NextPage = () => {
     trigger,
     watch,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid }
   } = useForm<formData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
-    reValidateMode: 'onChange',
+    reValidateMode: 'onChange'
   });
 
   const watchAllFields = watch();
 
   const renderCategoryContent = (name: string, icon: ReactNode) => (
     <Box
-      display='flex'
-      flexDir='column'
-      justifyContent='space-between'
-      h='full'
-      position='relative'
+      display="flex"
+      flexDir="column"
+      justifyContent="space-between"
+      h="full"
+      position="relative"
     >
       {watchAllFields.campaignCategory === name ? (
-        <Box position='absolute' right='0'>
-          <CheckCircle size={20} color='#070702' weight='fill' />
+        <Box position="absolute" right="0">
+          <CheckCircle size={20} color="#070702" weight="fill" />
         </Box>
       ) : (
         ''
       )}
       <Box>{icon}</Box>
-      <Text fontSize='16px' fontFamily='DM mono' textTransform='capitalize'>
+      <Text fontSize="16px" fontFamily="DM mono" textTransform="capitalize">
         {name}
       </Text>
     </Box>
@@ -193,7 +193,7 @@ const Launch: NextPage = () => {
           size={40}
           color={watchAllFields.campaignCategory == id ? '#FFD60A' : undefined}
         />
-      ),
+      )
     })
   );
 
@@ -202,18 +202,18 @@ const Launch: NextPage = () => {
     description: string,
     field: string
   ) => (
-    <Box display='flex' alignItems='center' justifyContent='space-between'>
+    <Box display="flex" alignItems="center" justifyContent="space-between">
       <Box>
-        <Text fontFamily='DM mono' fontSize='20px' mb={2}>
+        <Text fontFamily="DM mono" fontSize="20px" mb={2}>
           {name}
         </Text>
-        <Text fontSize='13px'>{description}</Text>
+        <Text fontSize="13px">{description}</Text>
       </Box>
       <Box>
         {watchAllFields.campaignListing === field ? (
-          <CheckCircle size={25} color='#FFD60A' weight='fill' />
+          <CheckCircle size={25} color="#FFD60A" weight="fill" />
         ) : (
-          <Circle size={25} weight='fill' color='#E2E8F0' />
+          <Circle size={25} weight="fill" color="#E2E8F0" />
         )}
       </Box>
     </Box>
@@ -226,7 +226,7 @@ const Launch: NextPage = () => {
         'Make Public',
         'Campaign will show up in campaigns page and anyone can fund',
         'public'
-      ),
+      )
     },
     {
       value: 'private',
@@ -234,15 +234,15 @@ const Launch: NextPage = () => {
         'Unlisted',
         'Only people who have access to the link can fund campaign',
         'private'
-      ),
-    },
+      )
+    }
   ];
 
   const stepContents = {
     campaignCategory: (
       <Stack spacing={4} w={'full'} maxW={'3xl'} p={6}>
         <RadioGroup
-          name='campaignCategory'
+          name="campaignCategory"
           control={control}
           label={() => (
             <>
@@ -266,15 +266,15 @@ const Launch: NextPage = () => {
               '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)',
             _hover: {
               boxShadow:
-                '0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                '0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)'
             },
             _checked: {
               bg: 'yellow.100',
               borderColor: '',
               border: '1px solid #F6E05E',
               boxShadow:
-                '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)',
-            },
+                '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)'
+            }
           }}
         />
       </Stack>
@@ -283,61 +283,61 @@ const Launch: NextPage = () => {
       <Box>
         <Stack spacing={4} w={'full'} maxW={'lg'} p={6}>
           <FormControl
-            pb='51px'
+            pb="51px"
             isInvalid={!!errors.campaignName?.message?.length}
             isRequired
           >
             <FormLabel
-              htmlFor='campaignName'
-              color='black'
-              fontFamily='DM mono'
-              fontSize='24px'
-              lineHeight='120%'
+              htmlFor="campaignName"
+              color="black"
+              fontFamily="DM mono"
+              fontSize="24px"
+              lineHeight="120%"
             >
               Name your <br />
               campaign
             </FormLabel>
-            <Text color='gray.600' mb={3}>
+            <Text color="gray.600" mb={3}>
               Something memorable
             </Text>
             <Input
               {...register('campaignName', {
-                validate: (value) => {
+                validate: value => {
                   return !!value.trim();
-                },
+                }
               })}
-              id='campaignName'
-              variant='outline'
-              size='lg'
+              id="campaignName"
+              variant="outline"
+              size="lg"
               _placeholder={{ color: 'gray.500' }}
-              placeholder='e.g Air Fryer For Campers'
+              placeholder="e.g Air Fryer For Campers"
             />
             <FormErrorMessage>{errors.campaignName?.message}</FormErrorMessage>
           </FormControl>
           <FormControl
-            pb='51px'
+            pb="51px"
             isInvalid={!!errors.campaignDescription?.message?.length}
           >
             <FormLabel
-              htmlFor='campaignDescription'
-              color='black'
-              fontFamily='DM mono'
-              fontSize='24px'
-              lineHeight='120%'
+              htmlFor="campaignDescription"
+              color="black"
+              fontFamily="DM mono"
+              fontSize="24px"
+              lineHeight="120%"
             >
               Tell us a <br />
               little bit more
             </FormLabel>
-            <Text color='gray.600' mb={3}>
+            <Text color="gray.600" mb={3}>
               In a few words describe your product
             </Text>
             <Textarea
               {...register('campaignDescription')}
-              id='campaignDescription'
-              variant='outline'
-              size='lg'
+              id="campaignDescription"
+              variant="outline"
+              size="lg"
               _placeholder={{ color: 'gray.500' }}
-              placeholder='Here is a sample placeholder'
+              placeholder="Here is a sample placeholder"
             />
             <FormErrorMessage>
               {errors.campaignDescription?.message}
@@ -345,21 +345,21 @@ const Launch: NextPage = () => {
           </FormControl>
           <FormControl>
             <FormLabel
-              htmlFor=''
-              color='black'
-              fontFamily='DM mono'
-              fontSize='24px'
-              lineHeight='120%'
+              htmlFor=""
+              color="black"
+              fontFamily="DM mono"
+              fontSize="24px"
+              lineHeight="120%"
             >
               An image speaks <br /> louder than words
             </FormLabel>
-            <Text color='gray.600' mb={3}>
+            <Text color="gray.600" mb={3}>
               Your image should be at least <code>1024 x 576</code> pixels and{' '}
               <code>2MB</code> size max
             </Text>
             <FileUpload
-              name='campaignPreview'
-              setFile={(files) => {
+              name="campaignPreview"
+              setFile={files => {
                 setFile(files);
                 if (files.length) {
                   setFilePreview(URL.createObjectURL(files[0].file));
@@ -376,7 +376,7 @@ const Launch: NextPage = () => {
     campaignListing: (
       <Stack spacing={4} w={'full'} maxW={'3xl'} p={6}>
         <RadioGroup
-          name='campaignListing'
+          name="campaignListing"
           control={control}
           label={() => (
             <>
@@ -400,55 +400,55 @@ const Launch: NextPage = () => {
             _checked: {
               bg: 'yellow.100',
               borderColor: '',
-              border: '1px solid #F6E05E',
-            },
+              border: '1px solid #F6E05E'
+            }
           }}
         />
       </Stack>
-    ),
+    )
   };
 
   const steps = [
     {
       header: (
         <Image
-          src='/images/logo-single.svg'
-          width='73'
-          height='61'
-          alt='Crowdship'
+          src="/images/logo-single.svg"
+          width="73"
+          height="61"
+          alt="Crowdship"
         />
       ),
       content: stepContents['campaignCategory'],
-      fields: ['campaignCategory'],
+      fields: ['campaignCategory']
     },
     {
       header: (
-        <Text fontWeight='500' fontFamily='DM Mono' fontSize='20px'>
+        <Text fontWeight="500" fontFamily="DM Mono" fontSize="20px">
           Step {activeStep + 1} of 3
         </Text>
       ),
       content: stepContents['campaignName'],
-      fields: ['campaignName'],
+      fields: ['campaignName']
     },
     {
       header: (
         <Text
-          fontWeight='500'
-          fontFamily='DM Mono'
-          cursor='pointer'
-          fontSize='20px'
+          fontWeight="500"
+          fontFamily="DM Mono"
+          cursor="pointer"
+          fontSize="20px"
         >
           Cancel
         </Text>
       ),
       content: stepContents['campaignListing'],
-      fields: ['campaignListing'],
-    },
+      fields: ['campaignListing']
+    }
   ];
 
   const setProfileDrawerLoading = (loading: boolean) => {
     setNotification({
-      loading,
+      loading
     });
   };
 
@@ -462,17 +462,17 @@ const Launch: NextPage = () => {
           type: 'success',
           isOpen: true,
           title: 'Huzzah! Your profile was much success.',
-          showButton: false,
+          showButton: false
         });
       })
-      .catch((err) => {
+      .catch(err => {
         setNotification({
           type: 'error',
           isOpen: true,
           title: err.error.message,
-          icon: <XCircle color='#FFFFFF' size={25} />,
+          icon: <XCircle color="#FFFFFF" size={25} />,
           buttonText: 'Try again',
-          buttonAction: async () => createProfile(user),
+          buttonAction: async () => createProfile(user)
         });
       })
       .finally(() => {
@@ -487,7 +487,7 @@ const Launch: NextPage = () => {
       if (activeStep === 2 && watchAllFields.campaignListing === 'public') {
         !fields.includes('campaignDescription')
           ? fields.push('campaignDescription')
-          : fields.filter((x) => x !== 'campaignDescription');
+          : fields.filter(x => x !== 'campaignDescription');
       }
 
       const result = await trigger(fields as []);
@@ -503,7 +503,7 @@ const Launch: NextPage = () => {
         setCampaignForm({
           ...campaignForm,
           isLoading: true,
-          loadingText: 'Launching...',
+          loadingText: 'Launching...'
         });
 
         if (!campaignFactory) throw new Error('Campaign factory not found');
@@ -517,7 +517,7 @@ const Launch: NextPage = () => {
         } else {
           setCampaignForm({
             ...campaignForm,
-            isLoading: false,
+            isLoading: false
           });
 
           // ask user to create a profile
@@ -527,7 +527,7 @@ const Launch: NextPage = () => {
             title: "Seems like you don't have a profile yet.",
             buttonText: "Let's do it!",
             showButton: true,
-            buttonAction: async () => createProfile(user),
+            buttonAction: async () => createProfile(user)
           });
         }
       } catch (err) {
@@ -535,11 +535,11 @@ const Launch: NextPage = () => {
           type: 'error',
           isOpen: true,
           title: err.message,
-          showButton: false,
+          showButton: false
         });
         setCampaignForm({
           ...campaignForm,
-          isLoading: false,
+          isLoading: false
         });
       }
     }
@@ -554,7 +554,7 @@ const Launch: NextPage = () => {
       campaignName,
       campaignDescription,
       campaignCategory,
-      campaignListing,
+      campaignListing
     } = watchAllFields;
     const isPrivateCampaign = campaignListing === 'private';
     let cid = null;
@@ -570,7 +570,7 @@ const Launch: NextPage = () => {
         setTransactionError(error.response);
         setCampaignForm({
           ...campaignForm,
-          isLoading: false,
+          isLoading: false
         });
         return;
       }
@@ -581,7 +581,7 @@ const Launch: NextPage = () => {
     const campaignSlug = slugify(campaignName, {
       lower: true,
       strict: true,
-      remove: /[*+~.()'"!:@]/g,
+      remove: /[*+~.()'"!:@]/g
     });
 
     const campaign = user.get(_id).put({
@@ -591,7 +591,7 @@ const Launch: NextPage = () => {
       description: campaignDescription,
       thumbnail: cid ? cid.response : '',
       category: campaignCategory,
-      private: isPrivateCampaign,
+      private: isPrivateCampaign
     });
     gun.get('campaigns').set(campaign);
 
@@ -603,7 +603,7 @@ const Launch: NextPage = () => {
         _id
       );
 
-      campaignFactory.on('CampaignDeployed', (_campaignFactory) => {
+      campaignFactory.on('CampaignDeployed', _campaignFactory => {
         const campaignUrl = makeUrl(
           '/',
           `campaign/${_id}/${campaignSlug}/details`
@@ -614,7 +614,7 @@ const Launch: NextPage = () => {
       setTransactionError(error.message);
       setCampaignForm({
         ...campaignForm,
-        isLoading: false,
+        isLoading: false
       });
     }
   };
@@ -637,7 +637,7 @@ const Launch: NextPage = () => {
     setCampaignForm({
       ...campaignForm,
       isLoading: authenticating,
-      loadingText: 'Connecting...',
+      loadingText: 'Connecting...'
     });
   }, [authenticating]);
 
@@ -655,19 +655,19 @@ const Launch: NextPage = () => {
           width: '100%',
           top: '90px',
           right: '-200px',
-          zIndex: '-1',
+          zIndex: '-1'
         }}
       >
         <SimpleGrid
-          position='fixed'
-          top='0'
-          width='100%'
+          position="fixed"
+          top="0"
+          width="100%"
           columns={3}
           spacing={0}
-          bg='gray.50'
-          height='71px'
-          borderBottom='1px solid'
-          borderBottomColor='blackAlpha.400'
+          bg="gray.50"
+          height="71px"
+          borderBottom="1px solid"
+          borderBottomColor="blackAlpha.400"
           zIndex={3}
         >
           {steps.map(({ header }, idx) => (
@@ -676,19 +676,19 @@ const Launch: NextPage = () => {
             </Content>
           ))}
         </SimpleGrid>
-        <Container maxW='container.xl' mt='100px' position='relative'>
-          <Box display='flex' justifyContent='space-between'>
-            <Box w='100%'>
+        <Container maxW="container.xl" mt="100px" position="relative">
+          <Box display="flex" justifyContent="space-between">
+            <Box w="100%">
               <form>
                 {transactionError && (
                   <Stack spacing={4} w={'full'} maxW={'3xl'} p={6}>
-                    <Alert status='error' variant='solid' bg='red.500'>
+                    <Alert status="error" variant="solid" bg="red.500">
                       <AlertIcon />
                       <AlertDescription>{transactionError}</AlertDescription>
                       <CloseButton
-                        position='absolute'
-                        right='8px'
-                        top='8px'
+                        position="absolute"
+                        right="8px"
+                        top="8px"
                         _focus={{ boxShadow: 'none' }}
                         onClick={() => setTransactionError('')}
                       />
@@ -696,32 +696,32 @@ const Launch: NextPage = () => {
                   </Stack>
                 )}
                 {steps[activeStep].content}
-                <Flex as='footer' maxW='sm' flexDir='column' width='100%' p={6}>
-                  <Flex width='100%' justify='flex-start'>
+                <Flex as="footer" maxW="sm" flexDir="column" width="100%" p={6}>
+                  <Flex width="100%" justify="flex-start">
                     <Button
                       mr={4}
-                      variant='plain'
-                      fontWeight='500'
+                      variant="plain"
+                      fontWeight="500"
                       onClick={() =>
                         activeStep !== 0
                           ? setActiveStep(activeStep - 1)
                           : goToHome()
                       }
-                      width='100px'
+                      width="100px"
                       leftIcon={
                         activeStep !== 0 ? (
                           <ArrowBackIcon />
                         ) : (
-                          <Box as='span' display='none'></Box>
+                          <Box as="span" display="none"></Box>
                         )
                       }
                     >
                       {activeStep === 0 ? 'Cancel' : 'Back'}
                     </Button>
                     <Button
-                      variant='secondary'
-                      fontWeight='500'
-                      width='100%'
+                      variant="secondary"
+                      fontWeight="500"
+                      width="100%"
                       isLoading={campaignForm.isLoading}
                       loadingText={campaignForm.loadingText}
                       onClick={nextStep}
@@ -735,12 +735,12 @@ const Launch: NextPage = () => {
               </form>
             </Box>
             <Box
-              position='sticky'
-              top='120px'
-              right='100px'
-              display='flex'
-              justifyContent='flex-end'
-              w='50%'
+              position="sticky"
+              top="120px"
+              right="100px"
+              display="flex"
+              justifyContent="flex-end"
+              w="50%"
             >
               <CampaignCard
                 image={filePreview}
@@ -748,16 +748,15 @@ const Launch: NextPage = () => {
                 body={watchAllFields.campaignDescription}
                 category={
                   categories.filter(
-                    (category) =>
-                      category.id === watchAllFields.campaignCategory
+                    category => category.id === watchAllFields.campaignCategory
                   )[0]?.title
                 }
-                raised='0'
-                target=''
+                raised="0"
+                target=""
                 style={{
                   boxShadow: '0 1rem 3rem rgba(0,0,0,.175)',
                   position: 'fixed',
-                  top: '130px',
+                  top: '130px'
                 }}
               />
             </Box>

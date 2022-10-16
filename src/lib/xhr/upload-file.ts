@@ -16,7 +16,7 @@ export const uploadFile = (
       } else {
         reject({
           status: xhr.status,
-          response: xhr.responseText,
+          response: xhr.responseText
         });
       }
     };

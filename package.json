@@ -1,16 +1,20 @@
 {
   "name": "crowdship-interface",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "yarn contracts:compile && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "contracts:compile": "typechain --target ethers-v5 --out-dir src/types/contracts './src/abis/**/*.json'",
     "i18n:extract": "NODE_ENV=development lingui extract",
     "i18n:compile": "yarn i18n:extract && lingui compile",
-    "i18n:pseudo": "lingui extract --locale pseudo && lingui compile"
+    "i18n:pseudo": "lingui extract --locale pseudo && lingui compile",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
@@ -88,8 +92,13 @@
     "babel-plugin-macros": "^3.1.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
     "ignore-loader": "^0.1.2",
+    "pinst": "^3.0.0",
     "postcss": "^8.3.8",
+    "prettier": "^2.7.1",
     "typechain": "^8.0.0",
     "typescript": "4.4.3"
   }

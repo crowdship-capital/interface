@@ -3,7 +3,7 @@ import {
   JSXElementConstructor,
   ReactElement,
   ReactNode,
-  useState,
+  useState
 } from 'react';
 import { motion, useCycle } from 'framer-motion';
 
@@ -18,14 +18,14 @@ import {
   MenuGroup,
   MenuDivider,
   PlacementWithLogical,
-  Center,
+  Center
 } from '@chakra-ui/react';
 
 import {
   TriangleDownIcon,
   TriangleUpIcon,
   ChevronRightIcon,
-  ChevronLeftIcon,
+  ChevronLeftIcon
 } from '@chakra-ui/icons';
 
 export interface IMenuItem {
@@ -51,15 +51,15 @@ const slideHorizontalAnimation = {
   left: {
     x: 0,
     transition: {
-      duration: 0.3,
-    },
+      duration: 0.3
+    }
   },
   right: {
     x: -215,
     transition: {
-      duration: 0.3,
-    },
-  },
+      duration: 0.3
+    }
+  }
 };
 
 export const AdvancedMenu: FC<IAdvancedMenu> = ({
@@ -69,7 +69,7 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
   showOpenIcon,
   closeOnSelect,
   closeOnBlur,
-  placement,
+  placement
 }): ReactElement => {
   const [currentSubMenu, setCurrentSubMenu] = useState([]);
   const [isLeftMenu, toggleMenu] = useCycle(true, false);
@@ -86,15 +86,15 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
     return (
       <>
         <Box
-          w='full'
-          display='flex'
-          alignItems='center'
-          justifyContent='space-between'
+          w="full"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
         >
           {typeof text !== 'string' ? (
             text
           ) : (
-            <Text textTransform='capitalize'>{text}</Text>
+            <Text textTransform="capitalize">{text}</Text>
           )}
           {children && children.length ? (
             <ChevronRightIcon w={4} h={4} />
@@ -114,9 +114,9 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
       <Box key={idx}>
         <MenuItem
           icon={icon}
-          w='200px'
-          m='2'
-          borderRadius='md'
+          w="200px"
+          m="2"
+          borderRadius="md"
           onClick={() => {
             if (children && children.length) {
               toggleMenu();
@@ -143,19 +143,19 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
   // return merged main and sub menu with parent div
   const renderMenuItems = (): ReactNode => (
     <motion.div
-      initial='left'
+      initial="left"
       animate={isLeftMenu ? 'left' : 'right'}
       variants={slideHorizontalAnimation}
       style={{
         width: '430px',
-        display: 'flex',
+        display: 'flex'
       }}
     >
       <motion.div
         style={{
           width: '215px',
           position: 'relative',
-          overflow: 'auto',
+          overflow: 'auto'
         }}
       >
         <MenuGroup>{mainMenu}</MenuGroup>
@@ -164,16 +164,16 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
         style={{
           width: '215px',
           position: 'relative',
-          overflow: 'auto',
+          overflow: 'auto'
         }}
       >
-        <Box position='absolute' top='0' right='0' height='100%'>
+        <Box position="absolute" top="0" right="0" height="100%">
           <MenuGroup>
             {subMenu.length ? (
               <MenuItem
-                w='200px'
-                m='2'
-                borderRadius='md'
+                w="200px"
+                m="2"
+                borderRadius="md"
                 onClick={() => {
                   toggleMenu();
                 }}
@@ -211,13 +211,13 @@ export const AdvancedMenu: FC<IAdvancedMenu> = ({
             <Center>{menuButtonTrigger}</Center>
           </MenuButton>
           <MenuList
-            border='none'
-            minW='unset'
-            w='215px'
-            pt='0'
-            pb='0'
-            shadow='xl'
-            overflow='hidden'
+            border="none"
+            minW="unset"
+            w="215px"
+            pt="0"
+            pb="0"
+            shadow="xl"
+            overflow="hidden"
             zIndex={9999}
           >
             {renderMenuItems()}
@@ -233,7 +233,7 @@ AdvancedMenu.defaultProps = {
   closeOnSelect: true,
   showOpenIcon: true,
   menuButtonStyle: {
-    variant: 'primary',
+    variant: 'primary'
   },
-  placement: 'bottom-end',
+  placement: 'bottom-end'
 };

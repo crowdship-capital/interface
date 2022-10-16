@@ -6,9 +6,9 @@ export const NumberInputStyles = {
       borderRadius: 'sm',
       border: 'none',
       _hover: {
-        borderColor: 'primary.foreground',
-      },
-    },
+        borderColor: 'primary.foreground'
+      }
+    }
   },
   sizes: {},
   variants: {
@@ -19,10 +19,10 @@ export const NumberInputStyles = {
         color: 'black.500',
         _focus: {
           borderColor: '#9280FF',
-          boxShadow: 'none',
-        },
-      },
-    },
+          boxShadow: 'none'
+        }
+      }
+    }
   },
-  defaultProps: {},
+  defaultProps: {}
 };

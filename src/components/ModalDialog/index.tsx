@@ -4,7 +4,7 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
-  ModalCloseButton,
+  ModalCloseButton
 } from '@chakra-ui/react';
 
 import { IModalDialog } from '@/types/common';

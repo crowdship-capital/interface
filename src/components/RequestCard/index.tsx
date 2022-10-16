@@ -28,25 +28,25 @@ const ApprovalBadge = ({ approval, ...rest }) => {
   switch (approval) {
     case 'pending':
       return (
-        <Badge bg='#ECC94B' {...rest}>
+        <Badge bg="#ECC94B" {...rest}>
           In progress
         </Badge>
       );
     case 'approved':
       return (
-        <Badge bg='green.500' {...rest}>
+        <Badge bg="green.500" {...rest}>
           Approved
         </Badge>
       );
     case 'failed':
       return (
-        <Badge bg='red.500' {...rest}>
+        <Badge bg="red.500" {...rest}>
           Failed
         </Badge>
       );
     default:
       return (
-        <Badge bg='gray.500' {...rest}>
+        <Badge bg="gray.500" {...rest}>
           Indecisive
         </Badge>
       );
@@ -62,88 +62,88 @@ export const RequestHeader: FC<IRequestHeader> = ({
   endDate,
   approvalCount,
   hideProgress,
-  hideNavigation,
+  hideNavigation
 }) => {
   return (
     <>
-      <Box display='flex' alignItems='center' justifyContent='space-between'>
-        <Box mb='3'>
-          <Heading fontSize='xl' fontWeight='500' mb='2'>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Box mb="3">
+          <Heading fontSize="xl" fontWeight="500" mb="2">
             {title}
           </Heading>
           <ApprovalBadge
             approval={approval}
-            borderRadius='md'
-            textTransform='uppercase'
-            color='white'
-            fontSize='sm'
-            px='2'
+            borderRadius="md"
+            textTransform="uppercase"
+            color="white"
+            fontSize="sm"
+            px="2"
           />
           {tags &&
-            tags.map((tag) => (
+            tags.map(tag => (
               <Badge
                 key={tag.text}
                 bg={tag.color}
-                borderRadius='md'
-                textTransform='uppercase'
-                color='white'
-                fontSize='sm'
-                px='2'
-                ml='2'
+                borderRadius="md"
+                textTransform="uppercase"
+                color="white"
+                fontSize="sm"
+                px="2"
+                ml="2"
               >
                 {tag.text}
               </Badge>
             ))}
           <Box
-            as='span'
-            color='blackAlpha.700'
-            fontWeight='500'
-            letterSpacing='wide'
-            fontSize='md'
-            textTransform='uppercase'
-            ml='2'
+            as="span"
+            color="blackAlpha.700"
+            fontWeight="500"
+            letterSpacing="wide"
+            fontSize="md"
+            textTransform="uppercase"
+            ml="2"
           >
             &bull; {requestAmount}
           </Box>
         </Box>
         {!hideNavigation && (
-          <Box as='span'>
+          <Box as="span">
             <ArrowRight size={24} />
           </Box>
         )}
       </Box>
       <Box
-        display='flex'
-        alignItems='center'
-        justifyContent='space-between'
-        fontSize='sm'
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        fontSize="sm"
       >
         <Box>
-          <Box as='span' color='gray.500' fontWeight='500'>
+          <Box as="span" color="gray.500" fontWeight="500">
             {approval !== 'pending'
               ? moment(endDate).format('MMM DD, YYYY')
               : `${moment(endDate).fromNow(true)} left`}
           </Box>
-          <Box as='span' color='blackAlpha.600' ml='2'>
+          <Box as="span" color="blackAlpha.600" ml="2">
             &bull; Request ID #{id}
           </Box>
         </Box>
         {!hideProgress && approval === 'pending' ? (
           <Box
-            display='flex'
-            alignItems='center'
-            color='blackAlpha.700'
-            fontWeight='500'
+            display="flex"
+            alignItems="center"
+            color="blackAlpha.700"
+            fontWeight="500"
           >
-            <Text as='span' mr='2'>
+            <Text as="span" mr="2">
               80%
             </Text>
             <Progress
               hasStripe
               value={approvalCount}
-              size='sm'
-              variant='success'
-              w='100px'
+              size="sm"
+              variant="success"
+              w="100px"
             />
           </Box>
         ) : null}
@@ -155,12 +155,12 @@ export const RequestHeader: FC<IRequestHeader> = ({
 export const RequestCard: FC<IRequestCard> = ({ approval, href, ...rest }) => {
   return (
     <Link href={href} passHref scroll={false}>
-      <Box as='a' w='full'>
+      <Box as="a" w="full">
         <Card
           bg={approval === 'pending' ? 'yellow.200' : 'white'}
-          cursor='pointer'
+          cursor="pointer"
           _hover={{
-            bg: 'blackAlpha.50',
+            bg: 'blackAlpha.50'
           }}
         >
           <RequestHeader approval={approval} hideProgress={false} {...rest} />

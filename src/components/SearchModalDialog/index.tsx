@@ -5,7 +5,7 @@ import {
   useCallback,
   KeyboardEvent,
   useMemo,
-  FC,
+  FC
 } from 'react';
 import {
   Box,
@@ -17,7 +17,7 @@ import {
   InputLeftElement,
   Input,
   useEventListener,
-  useUpdateEffect,
+  useUpdateEffect
 } from '@chakra-ui/react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import MultiRef from 'react-multi-ref';
@@ -37,14 +37,14 @@ export const initialProps: ISearchModalDialog = {
   isOpen: false,
   placeholder: 'Search Campaigns',
   onOpen: () => {},
-  onClose: () => {},
+  onClose: () => {}
 };
 
 export const SearchModalDialog: FC<ISearchModalDialog> = ({
   isOpen,
   placeholder,
   onClose,
-  onOpen,
+  onOpen
 }) => {
   const [query, setQuery] = useState('');
   const [openSearchTray, setOpenSearchTray] = useState(false);
@@ -58,78 +58,78 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
+        subheader: '25% complete'
       },
       {
         image: '/images/demo.jpg',
         header: 'Mountain Climbers',
-        subheader: '25% complete',
-      },
+        subheader: '25% complete'
+      }
     ];
   }, []);
 
@@ -147,11 +147,11 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
       scrollMode: 'if-needed',
       block: 'nearest',
       inline: 'nearest',
-      boundary: menuRef.current,
+      boundary: menuRef.current
     });
   }, [active]);
 
-  useEventListener('keydown', (event) => {
+  useEventListener('keydown', event => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform);
     const hotkey = isMac ? 'metaKey' : 'ctrlKey';
     if (event?.key?.toLowerCase() === 'k' && event[hotkey]) {
@@ -197,57 +197,57 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
     <>
       <ModalDialog
         isCentered={false}
-        backgroundColor='transparent'
-        boxShadow='none'
+        backgroundColor="transparent"
+        boxShadow="none"
         closeOnEsc
         closeOnOverlayClick
         blockScrollOnMount={true}
-        size='2xl'
+        size="2xl"
         onClose={onClose}
-        overlayBgColor='blackAlpha.6s00'
+        overlayBgColor="blackAlpha.6s00"
         isOpen={isOpen}
       >
         <Center>
           <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-            flexDirection='column'
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
             mt={10}
-            w='full'
+            w="full"
           >
             <Box
-              w='full'
-              backgroundColor='white'
-              borderRadius='lg'
-              overflow='hidden'
+              w="full"
+              backgroundColor="white"
+              borderRadius="lg"
+              overflow="hidden"
             >
               <InputGroup
-                size='lg'
-                borderBottom='1px rgba(0, 0, 0, 0.08)'
-                borderBottomStyle='solid'
-                backgroundColor='white'
+                size="lg"
+                borderBottom="1px rgba(0, 0, 0, 0.08)"
+                borderBottomStyle="solid"
+                backgroundColor="white"
                 padding={2}
               >
-                <InputLeftElement mt='2' ml='2'>
+                <InputLeftElement mt="2" ml="2">
                   <Image
-                    src='/images/modal-search.svg'
-                    height='23'
-                    width='23'
-                    alt='search icon'
+                    src="/images/modal-search.svg"
+                    height="23"
+                    width="23"
+                    alt="search icon"
                   />
                 </InputLeftElement>
                 <Input
-                  id='search'
+                  id="search"
                   _placeholder={{ color: 'blackAlpha.900' }}
                   placeholder={placeholder}
-                  fontSize='24px'
-                  border='none'
+                  fontSize="24px"
+                  border="none"
                   _focus={{
-                    boxShadow: 'none',
+                    boxShadow: 'none'
                   }}
                   onKeyDown={onKeyDown}
-                  onChange={(e) => {
+                  onChange={e => {
                     setQuery(e.target.value);
                     if (e.target.value.length) {
                       setOpenSearchTray(true);
@@ -259,20 +259,20 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
               </InputGroup>
               {openSearchTray ? (
                 <Box
-                  borderBottom='1px rgba(0, 0, 0, 0.08)'
-                  borderBottomStyle='solid'
-                  padding='15px 24px'
-                  overflow='auto'
-                  maxH='66vh'
+                  borderBottom="1px rgba(0, 0, 0, 0.08)"
+                  borderBottomStyle="solid"
+                  padding="15px 24px"
+                  overflow="auto"
+                  maxH="66vh"
                   ref={menuRef}
                 >
                   {results.map(({ image, header, subheader }, idx) => {
                     return (
                       <Box
                         key={idx}
-                        display='flex'
-                        alignItems='center'
-                        p='10px'
+                        display="flex"
+                        alignItems="center"
+                        p="10px"
                         mb={idx !== results.length - 1 ? 2 : 0}
                         backgroundColor={
                           active === idx ? 'yellow.200' : 'gray.50'
@@ -283,43 +283,43 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
                         }}
                         ref={menuNodes.ref(idx)}
                         onClick={onClose}
-                        className='campaign-search-card'
-                        borderRadius='lg'
-                        cursor='pointer'
+                        className="campaign-search-card"
+                        borderRadius="lg"
+                        cursor="pointer"
                       >
                         <Box mr={4}>
                           <Image
                             src={image}
                             alt={header}
-                            width='40'
-                            height='40'
-                            objectFit='cover'
-                            className='rounded-lg'
+                            width="40"
+                            height="40"
+                            objectFit="cover"
+                            className="rounded-lg"
                           />
                         </Box>
                         <Box
-                          display='flex'
-                          alignItems='center'
-                          justifyContent='space-between'
-                          w='full'
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="space-between"
+                          w="full"
                         >
                           <Box>
-                            <Text fontWeight='600'>{header}</Text>
-                            <Text color='blackAlpha.700' fontSize='13px'>
+                            <Text fontWeight="600">{header}</Text>
+                            <Text color="blackAlpha.700" fontSize="13px">
                               {subheader}
                             </Text>
                           </Box>
                           {active === idx ? (
                             <Box>
-                              <Text fontSize='13px' as='span'>
+                              <Text fontSize="13px" as="span">
                                 Enter
                               </Text>
                               <Kbd
-                                borderColor='#E8E8E8'
-                                backgroundColor='white'
-                                fontWeight='700'
-                                fontSize='17px'
-                                color='blackAlpha.600'
+                                borderColor="#E8E8E8"
+                                backgroundColor="white"
+                                fontWeight="700"
+                                fontSize="17px"
+                                color="blackAlpha.600"
                                 ml={1}
                               >
                                 ↵
@@ -334,45 +334,45 @@ export const SearchModalDialog: FC<ISearchModalDialog> = ({
                   })}
                 </Box>
               ) : null}
-              <Box w='full' padding='10px 20px' backgroundColor='gray.50'>
-                <HStack justifyContent='space-between'>
+              <Box w="full" padding="10px 20px" backgroundColor="gray.50">
+                <HStack justifyContent="space-between">
                   <Box
-                    display='flex'
-                    alignItems='center'
-                    color='blackAlpha.600'
+                    display="flex"
+                    alignItems="center"
+                    color="blackAlpha.600"
                   >
                     <Kbd
                       mr={1}
-                      borderColor='#E8E8E8'
-                      backgroundColor='white'
-                      fontWeight='700'
-                      fontSize='17px'
+                      borderColor="#E8E8E8"
+                      backgroundColor="white"
+                      fontWeight="700"
+                      fontSize="17px"
                     >
                       ↑
                     </Kbd>
                     <Kbd
                       mr={2}
-                      borderColor='#E8E8E8'
-                      backgroundColor='white'
-                      fontWeight='700'
-                      fontSize='17px'
+                      borderColor="#E8E8E8"
+                      backgroundColor="white"
+                      fontWeight="700"
+                      fontSize="17px"
                     >
                       ↓
                     </Kbd>
-                    <Text color='blackAlpha.600'>Navigate</Text>
+                    <Text color="blackAlpha.600">Navigate</Text>
                   </Box>
-                  <Box display='flex' alignItems='center'>
+                  <Box display="flex" alignItems="center">
                     <Kbd
-                      color='blackAlpha.600'
-                      backgroundColor='white'
-                      borderColor='#E8E8E8'
-                      fontSize='17px'
-                      fontWeight='400'
+                      color="blackAlpha.600"
+                      backgroundColor="white"
+                      borderColor="#E8E8E8"
+                      fontSize="17px"
+                      fontWeight="400"
                       mr={2}
                     >
                       esc
                     </Kbd>
-                    <Text color='blackAlpha.600'>Exit</Text>
+                    <Text color="blackAlpha.600">Exit</Text>
                   </Box>
                 </HStack>
               </Box>

@@ -38,7 +38,7 @@ export const FileUpload: FC<{
         server={serverConfig}
         instantUpload={false}
         allowProcess={false}
-        maxFileSize='2MB'
+        maxFileSize="2MB"
         acceptedFileTypes={['image/jpeg', 'image/png', 'image/gif']}
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />

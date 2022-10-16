@@ -7,9 +7,9 @@ export const RadioCard = (props: any) => {
   const checkbox = getCheckboxProps();
 
   return (
-    <Box as='label'>
+    <Box as="label">
       <input {...input} />
-      <Box {...checkbox} {...props.style} cursor='pointer'>
+      <Box {...checkbox} {...props.style} cursor="pointer">
         {props.children}
       </Box>
     </Box>

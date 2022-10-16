@@ -20,20 +20,20 @@ export const Statistic: FC<IStatistic> = ({
 }) => {
   return (
     <Card {...rest}>
-      <Text fontSize='sm' fontWeight='500' color='blackAlpha.600' mb='2'>
+      <Text fontSize="sm" fontWeight="500" color="blackAlpha.600" mb="2">
         {title}
       </Text>
-      <Box display='flex' alignItems='center'>
+      <Box display="flex" alignItems="center">
         {prefix ? (
-          <Box as='span' mr='2'>
+          <Box as="span" mr="2">
             {prefix}
           </Box>
         ) : null}
-        <Box as='span' fontSize='2xl' fontWeight='500'>
+        <Box as="span" fontSize="2xl" fontWeight="500">
           {value}
         </Box>
         {suffix ? (
-          <Box as='span' ml='2'>
+          <Box as="span" ml="2">
             {suffix}
           </Box>
         ) : null}
