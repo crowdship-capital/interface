@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { VStack, Box, Text, Center } from '@chakra-ui/react';
+import { Box, Text, Center } from '@chakra-ui/react';
 
 const Empty: FC<{ title: string; icon?: ReactNode }> = ({ title, icon }) => {
   return (

@@ -136,21 +136,16 @@ const Launch: NextPage = () => {
   const campaignFactory = useCampaignFactory(campaignFactoryAddress);
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const wallet = useWallet();
-  const [_, setNotification] = useNotification();
+  const [, setNotification] = useNotification();
 
   const makeUrl = useMakeUrl();
 
   const {
     register,
-    handleSubmit,
-    setError,
-    clearErrors,
-    getValues,
-    setValue,
     trigger,
     watch,
     control,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm<formData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -603,7 +598,7 @@ const Launch: NextPage = () => {
         _id
       );
 
-      campaignFactory.on('CampaignDeployed', _campaignFactory => {
+      campaignFactory.on('CampaignDeployed', () => {
         const campaignUrl = makeUrl(
           '/',
           `campaign/${_id}/${campaignSlug}/details`
@@ -620,7 +615,7 @@ const Launch: NextPage = () => {
   };
 
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {});
+    const subscription = watch(() => {});
 
     return () => subscription.unsubscribe();
   }, [watch]);
@@ -630,7 +625,7 @@ const Launch: NextPage = () => {
       // Make sure to revoke the data uris to avoid memory leaks
       URL.revokeObjectURL(filePreview);
     },
-    [file]
+    [file, filePreview]
   );
 
   useEffect(() => {
@@ -639,7 +634,7 @@ const Launch: NextPage = () => {
       isLoading: authenticating,
       loadingText: 'Connecting...'
     });
-  }, [authenticating]);
+  }, [authenticating, campaignForm]);
 
   return (
     <>

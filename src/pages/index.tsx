@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro';
-import type { NextPage } from 'next';
+//import type { NextPage } from 'next';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';

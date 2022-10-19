@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { Box } from '@chakra-ui/react';
 
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Splide } from '@splidejs/react-splide';
 import { Options } from '@splidejs/splide';
 
 import '@splidejs/react-splide/css';

@@ -1,6 +1,5 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { Heading, Box } from '@chakra-ui/react';
-import Lottie from 'lottie-react';
 
 import { ModalDialog } from '@/components/ModalDialog';
 import LoadingAnimation from '@/components/lottie/loading.json';
@@ -17,12 +16,7 @@ export const initialProps: ILoading = {
   loadingAnimation: LoadingAnimation
 };
 
-export const Loading: FC<ILoading> = ({
-  isLoading,
-  loadingText,
-  loadingAnimation
-}) => {
-  const animation = useMemo(() => LoadingAnimation, []);
+export const Loading: FC<ILoading> = ({ isLoading, loadingText }) => {
 
   return (
     <ModalDialog

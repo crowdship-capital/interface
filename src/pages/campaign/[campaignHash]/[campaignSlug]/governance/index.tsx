@@ -131,10 +131,9 @@ const Governance = () => {
             </Heading>
             <Box display="flex" alignItems="center">
               <InputGroup m="4">
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<MagnifyingGlass size={20} />}
-                />
+                <InputLeftElement pointerEvents="none">
+                <MagnifyingGlass size={20} />
+                </InputLeftElement>
                 <Input
                   variant="outlineAlt"
                   type="search"

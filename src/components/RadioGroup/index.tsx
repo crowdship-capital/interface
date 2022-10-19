@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import {
   SimpleGrid,
   useRadioGroup,
@@ -7,7 +7,7 @@ import {
   FormErrorMessage
 } from '@chakra-ui/react';
 import { RadioCard } from '@/components/RadioCard';
-import { useController, Control, FieldValues } from 'react-hook-form';
+import { useController } from 'react-hook-form';
 
 export const RadioGroup: FC<{
   control: any;

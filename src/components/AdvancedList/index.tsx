@@ -38,9 +38,7 @@ export const AdvancedList: FC<IAdvancedList> = ({
   showDivider,
   showMore,
   showNavigation,
-  showFirst,
   withPagination,
-  perPage,
   onNext,
   onPrev
 }) => {

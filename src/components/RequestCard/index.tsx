@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 

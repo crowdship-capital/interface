@@ -1,4 +1,3 @@
-import { HStack, Box, Heading } from '@chakra-ui/react';
 import Avatar from 'boring-avatars';
 import moment from 'moment';
 
@@ -13,7 +12,7 @@ const transactionTitle = `${generateSlicedAddress(
   '0x0000000000000000000000000000000000000000'
 )} donated $250`;
 
-const TRANSACTIONS = Array.from({ length: 10 }, (_, i) => ({
+const TRANSACTIONS = Array.from({ length: 10 }, () => ({
   title: transactionTitle,
   subtitle: moment().fromNow(),
   logo: (

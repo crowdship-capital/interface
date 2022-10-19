@@ -151,7 +151,7 @@ const campaignConfig = [
   }
 ];
 
-const Home: NextPage = props => {
+const Home: NextPage = () => {
   const [authenticate, authenticating, authenticated] = useAuthenticate();
   const logout = useLogout();
 
@@ -330,7 +330,7 @@ const Home: NextPage = props => {
   };
 
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {});
+    const subscription = watch(() => {});
 
     return () => subscription.unsubscribe();
   }, [watch]);

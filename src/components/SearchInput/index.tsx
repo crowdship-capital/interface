@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { Button, Box, Text, Kbd } from '@chakra-ui/react';
 
 export interface ISearchInput {

@@ -1,15 +1,7 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  Container,
-  Box,
-  Stack,
-  Heading,
-  Flex,
-  Button,
-  Text
-} from '@chakra-ui/react';
+import { Container, Box, Stack, Flex, Button, Text } from '@chakra-ui/react';
 import { CaretLeft } from 'phosphor-react';
 
 type HeroProps = {

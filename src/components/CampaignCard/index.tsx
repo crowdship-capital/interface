@@ -83,8 +83,6 @@ const AltCampaignCard = ({
   image,
   category,
   raised,
-  target,
-  badge,
   style
 }: CampaignCardProps) => (
   <Box
